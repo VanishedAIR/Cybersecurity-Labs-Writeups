@@ -27,3 +27,13 @@
 - No one thing can completely secure a system
 - Idea being that if one part fails, then another part should be able to resist the attack by implementing security in layers
 - Consider technical, physical, and administrative controls
+
+## AAA
+
+-  Authentication: 
+    - Prove you are who you say you are 
+    - Passwords and other authentication factors
+- Authorization: 
+    - Based on your identification and authentication, what access do you have?
+- Accounting:
+    - Resources used: Login time, data send and received, logout time
