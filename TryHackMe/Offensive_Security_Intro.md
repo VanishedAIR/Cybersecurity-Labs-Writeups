@@ -2,7 +2,7 @@
 
 ### Task Summary:
 
-Brute forcing through directories to check for public admin pages that should have been made private.
+- Brute forcing through directories to check for public admin pages that should have been made private.
 
 ### Commands Used:
 
@@ -20,4 +20,4 @@ Brute forcing through directories to check for public admin pages that should ha
 
 ### Reflection:
 
-Practiced using gobuster; learned the real-world risks of unprotected pages.
+- Practiced using gobuster; learned the real-world risks of unprotected pages.
