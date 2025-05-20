@@ -13,13 +13,13 @@
 - Some tasks related to defensive security include:
 
   - Train users about cyber security to prevent attacks
-  
+
   - Have knowledge about the systems and devices needed to be protected
-  
+
   - Ensure systems are updated and patched against and known vulnerabilities
-  
+
   - Set up preventative security devices: firewall, intrusion prevention systems (IPS: detects and stops intrusions, usually deployed in front of the protected asset and block any potential threat from reaching their target). Firewalls control what network traffic goes inside and what can leave the system or network. IPS blocks network traffic matching present rules and attack signatures.
-  
+
   - Set up proper logging and monitoring devices such that if a new unauthorized device appears on uor network, we should be able to detect it.
 
 - Security Operations Center (SOC), a team of cyber security professionals that monitors the network and its systems to detect malicious cyber security events. Main areas of interest for a SOC include:
@@ -37,6 +37,7 @@
   - Collects information to help company better prepare against potential adversaries with the purpose bto achieve a threat-informed defense.
 
   - Intelligence needs data, which has to be collected, processed, and analyzed.
+
     - It can be collected from local sources such as network logs and public sources such as forums.
     - Data Processing arranges it into a format suitable for analysis.
     - Analysis phase seeks to find more info about the attackers and their motives, aiming to create a list of recommendations and actionable steps.
@@ -52,6 +53,7 @@
     - Network logs: Logs of the network packets that have traversed a network would help answer more questions about whether an attack is occurring and what it entails.
 
 - Incident Response:
+
   - Specifies the methodology that should be followed to handle an incident. The aim is to reduce damage and recover in the shortest time possible. Ideally you would develop a plan that is ready for incident response. 4 major phases of incident response process are:
 
     - Preparation: Ideally, various measures are put in place to prevent incidents from happening in the first place.
@@ -60,7 +62,9 @@
     - Post-Incident Activity: After a successful recovery, a report is produced to learn and prevent similar future incidents.
 
 - Malware Analysis:
+
   - Malware includes many types:
+
     - Virus: Piece of code that attaches itself to a program designed to spread from one computer to another and works by altering, overwriting, and deleting files once infecting a computer. Causes the computer to become slow to unusable.
     - Trojan Horse: Shows itself as one desirable function but hides a malicious function underneath.
     - Ransomware: Encrypts files and demands a ransom payment to decrypt them.

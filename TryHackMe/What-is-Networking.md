@@ -52,15 +52,15 @@
   - The first six character represent the company that made the network interface, and the last six is a unique number
   - In the example, a4:c3:f0 corresponds to Intel and 85:ac:2d is unique address
 
-- An interesting thing about MAC addresses is that they can be faked or "spoofed" in a process known as spoofing. 
+- An interesting thing about MAC addresses is that they can be faked or "spoofed" in a process known as spoofing.
 
 - Spoofing occurs when a networked device pretends to identify as another using its MAC address. When this occurs, it can often break poorly implemented security designs that assumes that devices talking on a network are trustworthy.
 
-- Ping is one of the most fundamental network tools available to us. 
+- Ping is one of the most fundamental network tools available to us.
 
-- Ping uses ICMP (Internet Control Message Protocol) packets to determine the performance of a connection between devices, for example, if the connection exists or is reliable.  
+- Ping uses ICMP (Internet Control Message Protocol) packets to determine the performance of a connection between devices, for example, if the connection exists or is reliable.
 
-- The time taken for ICMP packets traveling between devices is measured by ping. 
+- The time taken for ICMP packets traveling between devices is measured by ping.
 
 - This measuring is done using ICMP's echo packet and then ICMP's echo reply from the target device.
 

@@ -1,4 +1,5 @@
 # Summary of all Security Fundamentals
+
 ## CIA Triad Summary
 
 ### C - Confidentiality
@@ -12,7 +13,6 @@
 ### A - Availability
 
 - Service should be available at all times, in an event of an attack, you need to make sure your service is secure to where you can still provide services even when under attack
-
 
 ## Least-Privilege-Principle Summary
 
@@ -36,13 +36,15 @@
 
 ## AAA
 
--  Authentication: 
-    - Prove you are who you say you are 
-    
-    - Passwords and other authentication factors
+- Authentication:
 
-- Authorization: 
-    - Based on your identification and authentication, what access do you have?
+  - Prove you are who you say you are
+
+  - Passwords and other authentication factors
+
+- Authorization:
+
+  - Based on your identification and authentication, what access do you have?
 
 - Accounting:
-    - Resources used: Login time, data send and received, logout time
+  - Resources used: Login time, data send and received, logout time
