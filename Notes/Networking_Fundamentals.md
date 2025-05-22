@@ -141,4 +141,34 @@
     - MAC (Media Access Control) Address Source: Identifies the device sending the frame
     - MAC Address - Destination: Identifies the device meant to receive the frame
     - Type/Length Field: Tells what kind of data is being carried (like an IPv4 packet)
-    - Error Checking (usually in trailer): Often a CRC (Cyclic Redundancy Check) is added to help detect any errors that happened while the data was moving across the wire. 
+    - Error Checking (usually in trailer): Often a CRC (Cyclic Redundancy Check) is added to help detect any errors that happened while the data was moving across the wire
+
+## PAN, LAN, MAN, and MAN ([Youtube](https://www.youtube.com/watch?v=CxYpjR_g-Y8))
+
+### Summary:
+- A network allows interconnected machines to be able to exchange data
+
+- A network consists of 3 types of physical components:
+  - The end devices, which are the machines at the end of the chain, such as computers, printers, or servers
+  - Network Equipment, which are intermediary devices that interconnect the end devices on the network. Includes devices like switches and routers
+  - Cables transmitting electrical signals, optical fiber conveying light waves, radio waves, etc which transports data across the network
+
+-  Networks can be classified based on their geographical coverage:
+  - PAN (Personal Area Network): 
+    - Covering a small area, allowing devices in the same vicinity to communicate
+    - Including devices like smartphones, laptops, headphones, and mice. Encompasses USB connections.
+    - There's also Wireless PAN, relying on Bluetooth or NFC (Near Field Communication). Wireless PANs find extensive use in the context of the Internet of Things
+  - LAN (Local Area Network):
+    - limited geographical area, like a building, house, hospital, or school
+    - involves terminal devices exchanging data within a confined zone
+    - Example of a LAN is an office's local network, where multiple work computers share file servers and network printers
+    - most popular type of LAN is Ethernet LAN, distinguished by its wired connection method, using twisted-pair cables, for reliable and high-speed data transmission within a confined geographical area
+    - There is also a wireless LAN, based on radio wave transmission, commonly known as WiFi.
+  - MAN (Metropolitan Area Network):
+    - Connects several nearby LANs as if they were a part of a single local network.
+    - Consists of switches or routers linked through high-speed connections (often fiber optic)
+  - WAN (Wide Area Network):
+    - Covers long distances, such as across a country or continent
+    - interconnects multiple LANs or MANs over extensive geographical areas
+    - International organizations can also establish private WANs, as in banking networks or stockbroker system
+    - Rely on infrastructure like fiber optics, international undersea cables, or satellite transmissions
