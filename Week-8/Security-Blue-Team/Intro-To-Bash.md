@@ -1,4 +1,4 @@
-# Introduction to Bash
+# Introduction to Bash [(Security Blue Team)](https://elearning.securityblue.team/home/courses/free-courses/introduction-to-bash#content)
 
 ## Getting Started
 
