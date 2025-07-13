@@ -313,3 +313,133 @@
     - chgrp
     - chmod
     - usermod
+
+## Process Listing and Management
+
+### Process Listing and Management
+
+-   `ps` (Process Status)
+
+    -   Used to list the currently running processes on a users system
+    -   Provides information about these processes, including their process IDs (PIDs), associated terminals, CPU and memory usage, and more
+    -   Example: `ps aux` displays a detailed list of all processes
+    -   ![20](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/54665658c300b28346dcb219e2a8b85a55ceab9b8892e6ef3c991209ea8fb86afbcb93645cfeb0af623300c60cf9.png)
+
+-   `top` (Process Viewing)
+
+    -   An interactive and dynamic process viewer that continuously updates and displays information about running processes
+    -   Real-time view of system performance, including CPU and memory usage
+    -   ![21](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/13bae1512e9c4e70af24fe94af7dd3a615751bb1b0ccc7ec7e5632b78dfd923959fd5dcde9131e6bf18db62fbfc0.png)
+
+-   `kill` (Terminate Process)
+
+    -   Used to terminate processes
+    -   `PID` can be specified to terminate a specific process
+    -   `kill` can send different signals to processes, with `SIGTERM` (15) being a common one for graceful termination
+    -   Example: `kill -15 PID`, this terminates a process with specified PID using `SIGTERM` signal
+    -   ![22](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/6eefe406c07f1b7eacc6f9b8dd00f1d33a920c1c135c97f491b8d5f52bc34aedf301f20dc9462bafa1c2f6edfbcb.png)
+    -   Firefox is listed with the `PID 5390`
+    -   ![23](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/ddc8542fabbacc30d5c7e4e7670e59fdb6fd190a4faa2bda2f72f6ddc43f4e8903f4cecacfd3668660706c0efb8e.png)
+
+-   `killall` (Terminate All Process)
+
+    -   Used to terminate processes by their name rather than their PID
+    -   Example: `killall -9 firefox`, forcefully terminates all running instances of the Firefox browser
+    -   ![24](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/ed75b3955f258bd9ba588cfb64a5467eb8c60a2145f1ede8f42c20ed37c4d408bd32c55945f3099e28897ce9cf65.png)
+    -   ![25](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/62dddb289783551e51c9ef36b2686af048d2ffb4c030b7589167f3f9049e979ac574b5f94c327c787cdfa10abfeb.png)
+
+-   `bg` and `fg` (Background and Foreground)
+
+    -   These commands are used to manage background and foreground jobs
+    -   `bg` moves a stopped or foreground job to the background, and `fg` brings a backgrounded job to the foreground for interaction
+    -   `bg %1` moves the job ID 1 to the background
+
+-   `nice` and `renice`
+
+    -   `nice` and `renice` are used to set and adjust the priority of processes
+    -   Lower values represent higher priority, and processes with higher priority get more CPU time
+    -   `nice` is used to start a new process with specific priority
+    -   `renice` modifies the priority of an already running process
+    -   Example: `nice -n -10 my process` starts a process with a higher priority
+
+-   `htop` (Monitor System Processes)
+
+    -   Interactive process viewer similar to `top` but with additional features and a more user-friendly interface
+    -   Provides detailed overview of system processes and their resource usage
+    -   ![26](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/6cadea4c70e5f11f0679a4761f9639c1cabfef4555d183ca9a0a63b058512203f0ee23e984661da521fc581b46ad.png)
+
+-   `strace` (Syscall Trace)
+    -   A diagnostic tool used to trace system calls and signals for a process
+    -   Invaluable for troubleshooting and understanding a process's behavior
+    -   Example: `strace -p PID` traces the system calls of a process with the specified PID
+
+### Quiz
+
+1. Which command is used to display a list of currently running processes?
+    - ls
+    - exec
+    - ps ✅
+    - run
+2. What does the top command do in a Unix-like system?
+    - Displays dynamic real-time information about running processes ✅
+    - Lists the highest priority tasks
+    - Shows the top directory of the file system
+    - Sorts files in descending order
+3. How can you terminate a process using its Process ID (PID)?
+    - del PID
+    - kill PID ✅
+    - remove PID
+    - clear PID
+4. What command would you use to change the priority of a running process?
+    - mod
+    - chpri
+    - nice ✅
+    - prichange
+5. Which option with the ps command shows all the processes running on the system, not just those tied to the current user?
+    - ps -u
+    - ps -c
+    - ps -e ✅
+    - ps -r
+
+## Introduction to Pipes
+
+### Pipes
+
+-   Pipes allow users to connect multiple commands together, creating command pipelines for data processing and manipulation
+-   Using Pipes to connect commands
+    -   The pipe symbol `|` is a special operator that connects the standard output (`stdout`) of one command to the standard input (`stdin`) of another
+    -   This connection allows data to flow from one command to the next
+-   Use Cases:
+    -   piping multiple commands: `cat`, `grep`, and `sort`
+    -   ![27](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/1fb8bd92c442dca5ba8ab38ad195c4ff1cd3efb0f76c7b4ce8f2f6b345598f446de82921fb45fb3aa006f9944b54.png)
+    -   `cat sample.txt` displays the contents of the "`sample.txt`" file
+    -   `grep "^A"` searches for the lines that start with the letter A where the `^` is used to specify the start of a line
+    -   `sort` as the name suggests, sorts the filtered names alphabetically
+
+### Quiz
+
+1. What is the main function of pipes in Unix-like systems?
+    - To increase the processing speed of the CPU
+    - To create new files in the directory
+    - To direct the output of one command to the input of another command ✅
+    - To display text files on the screen
+2. Which symbol is used to create a pipe in Unix-like command lines?
+    - &
+    - \
+    - | ✅
+    - /
+3. How would you use a pipe to count the number of lines in a file?
+    - cat filename | wc -l ✅
+    - cat filename < wc -l
+    - wc -l > filename
+    - wc -l filename | cat
+4. What is the correct usage of a pipe in this command sequence to list all directories only?
+    - ls -l > grep '^d'
+    - ls -l | grep '^d' ✅
+    - ls -l < grep '^d'
+    - grep '^d' | ls -l
+5. What key advantage do pipes provide in command line operations?
+    - They simplify syntax for complex commands.
+    - They allow for the combination of multiple tools and commands to perform complex tasks efficiently. ✅
+    - They prevent errors by managing command dependencies.
+    - They increase the security of command executions.
