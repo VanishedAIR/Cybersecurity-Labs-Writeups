@@ -284,3 +284,164 @@
     - cut -c1 file
     - cut -d"," -f1 file ✅
     - cut -b1 file
+
+## Writing Simple Bash Scripts
+
+### Creating and Running Bash Scripts
+
+-   Bash scripts are text files containing a series of Bash commands that are executed in sequence when the script is run.
+-   To create a simple Bash script, you can use a text editor like nano, vim, or even a graphical editor like sublime.
+-   Here's an example of a basic Bash script that displays a greeting message:
+    -   ![42](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/ae70d5a4f1a5d4b300b5af2ca0df36effda76d8d6b4b39a04ac91e6253671b939e13f33be08b9c6db42207438ff7.png)
+    -   `#!/bin/bash` is called the shebang line, which specifies that the script should be interpreted using the Bash shell
+    -   Comments start with `#` and are for adding explanations and documentation
+    -   `echo` is used to print the `"Hello, World!"` message to the terminal
+    -   To run the script, save it to a file (e.g., `basicscript.sh`), make it executable with the `chmod` command (`chmod +x basicscript.sh`), and then execute it by running `./basicscript.sh`.
+-   Using Shebangs (`#!/bin/bash`):
+    -   The shebang line, `#!/bin/bash`, is a special command at the beginning of a Bash script that specifies the interpret, ensuring proper execution of the script
+    -   Without the shebang, the system wouldn't know which interpreter to use, and the script might not work
+    -   ![43](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/51e0b2ee79537becfc051de0097d856eca47ff77a0c280601a2b9c50c754ce74e1f5a1874a03010fd14b405bcb59.png)
+    -   The `-p` acts as the prompt and the num is the variable that is set using user input.
+    -   The `$` is used to refer to variables
+
+### Variables and Input
+
+-   Variables are essential for storing and manipulating data within your scripts, and accepting user input allows your scripts to be interactive
+-   Accepting user input
+    -   ![44](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/97edec56fdbc4cfceaac64e9e759503b4220447460d4cf66c9830ca93682cbab5eb6a33bf012abf530a3d3caea39.png)
+    -   In this example, the read command is used to capture the user's name, which is then displayed in a greeting message
+-   Variable Interpolation
+    -   This involves embedding the value of variable within a string
+    -   This is done by placing the variable name within double quotes, and its value is substituted when the string is evaluated
+    -   ![45](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/d84803a7b2a4d012bbf1761b14e57364782ace126a3eb781972c736e509cb5dea7453d719f598f81425ecd4bd731.png)
+
+### Control Structures
+
+-   Used to make decisions and implement loops
+-   Conditional statements (if, else, fi):
+    -   Conditional statements, such as `if` and `else`, are used to perform actions based on specific conditions
+    -   The `fi` keyword marks the end of the conditional block
+    -   ![46](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/e8a3738a9aefe271597050f583c28b7ba2bfa18dda95c4b45db44aa6d8b6f89d21b38579d41d8442ac1876fa1735.png)
+        -   The `-ge` stands for greater than or equal to
+-   Loops (for, while):
+    -   `for` loops iterate over a list of items, while `while` loops continue execution as long a specified condition is true
+    -   ![47](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/66f42992aaacfc98298abe5abb119438d57f71362ed5b8ca8bd483e809c178ac8a64582152104b74ce70567315eb.png)
+        -   This for loop example iterates over an array of fruits and prints the fruit at that iteration with the prefix `I like`
+    -   ![48](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/7cec7ef23c638eaaaa28ea88e9a5d57d9a85e2ce09502f5d33305df03c4f2f09ac2c9c92aca2416e7935ccbe511d.png)
+        -   This while loop example updates count by 1 while the count variable is less than 5
+
+### Quiz:
+
+1. What is the correct extension typically used for Bash scripts?
+    - .txt
+    - .bash
+    - .sh ✅
+    - .script
+2. How do you make a Bash script executable?
+    - chown ubuntu scriptname
+    - chmod 777 scriptname.sh
+    - chmod +x scriptname.sh ✅
+    - chown 755 scriptname
+3. How do you read input during script execution and store it in a variable named user_input?
+    - read $user_input
+    - read user_input ✅
+    - input user_input
+    - capture user_input
+4. What is the correct syntax for a conditional statement in Bash?
+    - if [ condition ]: then
+    - if condition [ then ]
+    - if [ condition ]; then ✅
+    - if then [ condition ]
+5. Which control structure is used for repeating tasks a specific number of times?
+    - if
+    - for ✅
+    - while
+    - repeat
+6. What is a key advantage of using Bash scripts in system administration?
+    - They provide a graphical interface
+    - They automate repetitive tasks ✅
+    - They reduce the need for network security
+    - They replace the need for manual data entry
+
+## Scripting Advances
+
+### Functions
+
+-   Allows for more modular and reusable pieces of code
+-   Creating and Using Functions
+
+    -   Functions in Bash are blocks of code that perform a specific task
+    -   They are defined using the `function` keyword or simply by the function name followed by parentheses
+    -   A function can be called upon to execute its code
+    -   ![49](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/fb0b8db8eb680d72ece991bc1b2d954236f16f25771f99f1473cd54ef8774bbca993d53f3535f1d3e0d7a5bcba49.png)
+
+-   Returns Values
+    -   Functions can return values to the calling code
+    -   This allows you to pass information back from the function, providing a way to convey results or data
+    -   ![50](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/a0b036d58510474d22f59229d46e0e7a33cd16fa8ac91986be6bb64faefaf8ba0839dd3d73ac8c08bd729182a174.png)
+
+### Advanced Function Concepts
+
+-   Local and Global Variables in Functions
+    -   Scope of variables in functions is crucial for writing robust scripts
+    -   ![51](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/bde2abee7255ca6668277ae7c22a307c728aa910d791c1e13f469c6d2fd3e295842a90e5e51c811df9decd68f7f7.png)
+        -   In this example, `local_var` is a local variable inside the function, while `global_var` is a global variable accessible both inside and outside the function
+-   Function Parameters and Arguments
+    -   Functions can accept parameters (arguments) to make them more flexible
+    -   ![52](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/44347657511840084931f84e6cff2a97e253338b9c70d4c6ee07f1cda7774aea4e5689d3def8d9e4b7e7c71fd4ae.png)
+    -   Here, the `greet` function takes a parameter (`$1`) representing the name and uses it to customize the greeting messages
+-   Recursive Functions
+    -   These are functions that call themselves
+    -   ![53](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/203c5cef8a20e3163c8ddc9e90f0a773bf00d89c8abf8434b401b0d2f671b392938519f51675de7772621670544e.png)
+    -   An array named `names` is defined with a list of names.
+    -   The `greet_people` function is a recursive function that greets each person in the list.
+    -   The function removes the greeted person from the list and calls itself recursively to greet the next person.
+    -   The script starts the recursive greeting process.
+
+### Function Error Handling and Exit Codes
+
+-   Handling Errors in Functions
+    -   ![54](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/50882c00f64c14b14e713fd6dac4c397ec562a6e43532d1def758bdcb64adc840b93f6c99ec730310c097b5ef7c0.png)
+    -   In this example, the divide function checks for a division by zero error and returns an error code if encountered
+-   Exit Codes and Function Status
+    -   Functions can communicate their success or failure to the calling code using exit codes.
+    -   Understanding exit codes is essential for scripting in a more controlled and error-aware manner.
+    -   ![55](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/7f8a8dc24ad35d47555facc4aa867f251c0e6b3a0a14c3be13d28e8886606b8ccd71e7a666bed25f9ff7272b9984.png)
+-   Trapping Signals in Functions
+    -   Trap signals (interrupts, errors) within functions to ensure graceful termination and cleanup.
+    -   ![56](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/8964041310b9a4f2eda761935233881cd156993649ed7b40bbd547278f7f1bf128fb7b406041a417bbde53bf25a9.png)
+        -   `.e` helps check for existence of the file
+    -   In this example, the cleanup function is registered to run upon script exit, ensuring cleanup activities, right before the script terminates. The simulate_error function intentionally returns an error to demonstrate signal trapping.
+
+### Advanced Function Techniques
+
+-   Variable Scoping in Nested Functions
+    -   ![57](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/22c1b2d6c9ccab6b01173ab4a2e6497c4414219b423a0c285c817897a66712f2dc7e61fc9f37fe5d116593804834.png)
+    -   Here, the inner_function is nested within the outer_function, and variables from both scopes are accessed.
+-   Dynamic Function Names
+    -   Dynamically generating function names in Bash, enabling more flexible and versatile scripting.
+    -   ![58](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/d92d1df05d9d550309ca409b7fbddf840de6f8c5a1ffc4bb2a29a2fa44407fc0ea1e086e35ffcc745226b07c0254.png)
+    -   In this example, three functions with dynamic names are created using a loop, showcasing the ability to generate functions programmatically.
+
+### Quiz
+
+1. What is the primary purpose of using functions in scripting?
+    - To increase the script’s execution time
+    - To add graphical elements to the script
+    - To reduce code redundancy and simplify complex scripts ✅
+    - To interact directly with the hardware
+2. Which command within a function is used to return an exit status that signals an error?
+    - exit 1
+    - return 1 ✅
+    - return 0
+    - exit 0
+3. Why is error handling critical in function development?
+    - It allows the script to fail silently
+    - it prevents the programmer from debugging
+    - It ensures the script continues to operate under unexpected conditions ✅
+    - It reduces the memory usage of the script
+4. How can Bash functions be nested within other functions?
+    - By declaring them outside the script
+    - By defining one function inside another ✅
+    - Using a special keyword nested
+    - This is not possible in Bash
