@@ -443,3 +443,5 @@
     - They allow for the combination of multiple tools and commands to perform complex tasks efficiently. ✅
     - They prevent errors by managing command dependencies.
     - They increase the security of command executions.
+
+## For the next 2 modules refer to [Week 9 Security Blue Team Folder](../../Week-9/Security-Blue-Team/Intro-To-Bash.md)
