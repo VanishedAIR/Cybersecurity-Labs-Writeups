@@ -445,3 +445,240 @@
     - By defining one function inside another ✅
     - Using a special keyword nested
     - This is not possible in Bash
+
+## Case Study: PCAPEXTRACT
+
+### Automating Boring Tasks with Bash Scripting
+
+-   PCAPEXTRACT: Packet Analysis on Steroids
+
+    -   [PCAPEXTRACT - made by authors](https://github.com/RAB301000001C3/PCAPEXTRACT/blob/main/pcapextract)
+
+-   Introduction to Script Overview
+    -   Run the script using “./pcapextract”.
+    -   Scans the current directory to look for files ending in “.pcap” file extension.
+    -   Create a directory for every instances of PCAP file which the artifacts will be stored.
+    -   Copy the PCAP file into the directory for cleaner execution.
+    -   Checks if PCAP file exists in the directory, then run script if found, if not print the word “empty”.
+-   Script Functionality Overview
+    -   Shebang, Calling Functions, Display Message and Variable Declaration
+        -   A script always start with shebang (#!/bin/bash) declaration followed by the display message and lastly variable declaration.
+        -   Here’s the sample from PCAPEXTRACT script:
+        -   Setting variables for file, date, current directory, and username
+        -   ![59](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/af7ac65a8cfedb446236c8222be6006d707e4820353df52e477902ab5bc926b00d11267a1b24b58dec2321a58984.png)
+    -   Variables are defined with the following values:
+        -   `#!/bin/bash`: Shebang line specifies the Bash interpreter
+        -   `pcapextrfunc`: Imports functions from
+        -   `lolcat`: Displays a banner command.
+        -   `figlet` : Displays a stylized message and applies lolcat.
+        -   `file`: Assigned the string value "file".
+        -   `date`: Assigned the current date in the format YYMMDD, obtained using the date command with the format option %y%m%d.
+        -   `dir`: Assigned the current working directory using the pwd command.
+        -   `usr`: Assigned the current user's username using the whoami command.
+    -   Creating Conditional Loop
+        -   For Loop:
+            -   Iterates through each .pcap file in the current directory.
+        -   Directory and File Handling:
+            Sets the current .pcap file to the variable 'pcap'.
+            Creates a new directory with the current date in the name for each .pcap file.
+            Prints status messages about the directory creation and file copying.
+        -   Copy Operation:
+            Copies the current .pcap file to the newly created directory.
+        -   Comments:
+            -   Comments are included within the code using # to explain each section's purpose.
+            -   Additional comments are provided outside the code block for a more detailed explanation.
+        -   ![60](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/84197d7b5f8f4ab5c33095a58e31c2119a12dbe850ea2e17f0cfbcb763c0f0e991682728023ce93e74e933172063.png)
+    -   Creating Conditional Loop: Extracting PCAP’s GET METHOD
+        -   In this part of the script, it checks if the created directory is NOT empty then if the PCAP file is found it will continue with the analysis.
+        -   ![61](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/764b662a17737a0f3eeac60fb486ac5613e53aca1353940c93363b067b215014371e5e470f92ef36d6cd1bde649f.png)
+    -   The part of the script does the following:
+        -   Checks if the directory for the current pcap file is not empty.
+        -   If the directory is not empty, it proceeds to the next steps.
+        -   Displays a message indicating the presence of the pcap file.
+        -   Checks if the directory path is not empty.
+        -   If the directory path is not empty, it initiates the analysis and processing steps for the pcap file.
+        -   Displays messages indicating the start of the analysis and processing, incorporating sleep delays for a better user experience.
+    -   Next, these commands are used to perform actions from a PCAP file. We used TSHARK a command line counterpart of Wireshark which is famous as network packet analysis tool to extract HTTP.GET Method found inside the pcap file.
+        -   ![62](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/97ad0df549d19f32a804279d21088cb34826c95351f2f298fe78df8f8f1c709528c5cffb6b070617013e832391d7.png)
+    -   This script does the following:
+        -   Runs tshark commands for HTTP analysis on the pcap file.
+        -   Writes the results of the tshark commands to corresponding output files within a dated directory.
+        -   Indicates the completion of the extraction process.
+    -   Capture and Filter HTTP Requests with User-Agent "curl":
+        -   `“tshark -t ad -r ${pcap##/} -Y 'http.user_agent contains "curl" and http.request.method == GET' > ${pcap##/}.$date/${pcap##/}.$date.GET.txt*”`
+            -   Analyze network traffic from the specified .pcap file.
+            -   Applies a display filter to include only HTTP requests where the User-Agent contains "curl" and the request method is GET.
+            -   Redirects the filtered output to a text file with a specific naming convention in a directory based on the original .pcap file and the current date.
+    -   Append Separator Line to the Output File:
+        -   `“echo "******************************* " >> ${pcap##/}.$date/${pcap##/}.$date.GET.txt”***`
+            -   Appends a separator line to the same text file to distinguish different sections of output.
+    -   Capture All HTTP Requests:
+        -   `“tshark -t ad -r ${pcap##/} -Y 'http.request.method == GET' >> ${pcap##/}.$date/${pcap##/}.$date.GET.txt”*`
+            -   Analyze all HTTP requests from the same .pcap file.
+            -   Appends the output to the text file mentioned earlier.
+    -   Capture All HTTP Traffic:
+        -   `“tshark -t ad -r ${pcap##/} -Y "http" > ${pcap##/}.$date/${pcap##/}.$date.HTTP.txt”*`
+            -   Analyze all HTTP traffic from the .pcap file.
+                Redirects the output to a separate text file in a directory with the specified naming convention.
+    -   Export HTTP Objects:
+        -   `“tshark -Q -r ${pcap##/} --export-objects http,${pcap##/}.$date/${pcap##/}.$date.EXPORT”*`
+            -   Exports HTTP objects from the .pcap file, such as images or files transferred over HTTP.
+            -   Saves the exported objects in a directory with a specific naming convention.
+    -   Capture and Sort Source and Destination IP Addresses with Ports:
+        -   `“tshark -r ${pcap##/} -T fields -e ip.src -e tcp.srcport -e ip.dst -e tcp.dstport | sort -t: -u -k1,1 > ${pcap##/}.$date/${pcap##/}.$date.IP_PORTS.txt”*`
+            -   Captures and extracts source and destination IP addresses with corresponding ports.
+            -   Sorts and removes duplicate entries based on the source IP address.
+    -   Print Extraction Completion Status:
+        -   `echo -e "\t Status: Extraction Complete" echo -e "\t Extracting IP ADDRESSES"`
+            -   Prints a status message indicating that the extraction process is complete.
+
+### Automating IP Addresses Extraction
+
+-   This segment of the script is designed to extract IP addresses from a PCAP file using grep, utilizing a regular expression that matches the IP address format.
+-   The primary purpose of this script section is to extract and organize IP addresses from text files generated by preceding commands.
+-   `echo -e "\t Status: Extraction Complete"`
+-   `echo -e "\t Extracting IP ADDRESSES" grep -ohE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" ${pcap##/}.$date/${pcap##/}.$date..txt | sort -t: -u -k1,1 | gawk 'BEGIN {print "SORTED IP ADDRESSES \n"} {print $0}' > ${pcap##/}.$date/${pcap##/}.$date.IPSORTED.txt`
+-   `echo `
+-   `echo "************************ Extracting IP Address(es) found: View full extracted IP Addresses at ${pcap##/}.$date directory **************************** "`
+-   `sleep .5`
+-   `head -n1 ${pcap##/}.$date/${pcap##/}.$date.IPSORTED.txt | tail -n8 ${pcap##/}.$date/${pcap##*/}.$date.IPSORTED.txt`
+-   `echo "********************************************************************************************"`
+-   `echo " "`
+-   ![63](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/e51d0f2ac04cf286e9221c74760fc343a84f666567b3568432ede1c29e011f70da996b430aabc6cf68fbd84a5ea8.png)
+-   `echo -e "\t Extracting IP ADDRESSES”`
+    -   Outputs a message indicating that the script is initiating the extraction of IP addresses.
+-   Extract and Sort IP Addresses:
+    -   `grep -ohE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" ${pcap##/}.$date/${pcap##/}.$date..txt | sort -t: -u -k1,1 | gawk 'BEGIN {print "SORTED IP ADDRESSES \n"} {print $0}' > ${pcap##/}.$date/${pcap##/}.$date.IPSORTED.txt*`
+        -   Utilizes grep to search for and extract IP addresses from text files with a specific naming pattern.
+        -   Applies sorting and removes duplicate IP addresses based on the first field using sort.
+        -   Prepend a header to the sorted IP addresses using gawk.
+        -   Redirects the sorted IP addresses to a new text file.
+    -   Print and Pause Execution
+        -   `echo echo "************************* Extracting IP Address(es) found: View full extracted IP Addresses at ${pcap##/}.$date directory **************************** "**`
+        -   `sleep .5`
+        -   Outputs a blank line to enhance visual separation.
+        -   Displays a status message indicating that IP addresses have been successfully extracted and directs the user to a specific directory.
+        -   Delays the script execution for half a second, improving readability.
+    -   Display Part of the Extracted IP Addresses:
+        -   `head -n1 ${pcap##/}.$date/${pcap##/}.$date.IPSORTED.txt | tail -n8 ${pcap##/}.$date/${pcap##/}.$date.IPSORTED.txt`
+        -   Utilizes head and tail commands to exhibit the first line (header) and the subsequent eight lines of the sorted IP addresses.
+        -   Offers a preview of the extracted IP addresses.
+    -   Print blank line and Separator
+        -   `echo "***************************************************************************************" echo " "`
+        -   Outputs a separator line for visual clarity.
+        -   Outputs a blank line for enhanced visual separation in the console.
+
+### Automating DNS Extraction
+
+-   ![64](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/32ecabb4baf6e08583a015f01f9afd3ecc6f0b77cdf9e3145e6ea8310fc961d7a04105b2f390cdbabd4ef5acfead.png)
+-   Print Message:
+    -   `echo -e "\t Extracting Domain Names Found: View full extracted domains at ${pcap##/}.$date directory”\*`
+        -   Outputs a message indicating that the script is about to extract domain names.
+-   Capture DNS Traffic:
+    -   `tshark -t ad -r ${pcap##/} -Y 'udp.port == 53' > ${pcap##/}.$date/${pcap##/}.$date.Domain_Names_Raw.txt\*`
+        -   Uses tshark to capture DNS traffic (UDP port 53) from the PCAP file.
+        -   Redirects the raw output to a text file in a directory with a specific naming convention.
+-   Filter DNS Traffic:
+    -   `cat ${pcap##/}.$date/${pcap##/}.$date.Domain_Names_Raw.txt | dnsfilter > ${pcap##/}.$date/${pcap##/}.$date.Domain_Names_Filtered.txt`
+    -   Applies a function “dnsfilter” from “pcapextrfunc” to print DNS in human readable format.
+    -   Here’s the sample function:
+    -   ![65](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/b4ffbeb6f40a6c156b106618bfeb5211c6afcdf5e45c6452d297dd8bc38e13dca6158dac32ab59812cd153a868af.png)
+    -   `function dnsfilter {`
+        `gawk 'BEGIN { print " " print "No. \t Time \t \t \t \t IP.SRC \t IP.DEST \t DNS.QRY" print " \t " } { print $1 " " $2 " " $3 " " $4 " " $5 " " $6 " " $13 } '`
+        `}`
+    -   Redirects the filtered output to another text file.
+-   Display the First 10 Lines of Filtered Domain Names:
+    -   `cat ${pcap##/}.$date/${pcap##/}.$date.Domain_Names_Filtered.txt | head -n10 2> /dev/null`
+    -   Uses cat and head to display the first 10 lines of the filtered domain names.
+    -   Redirects potential errors to /dev/null.
+    -   Pause
+        -   `sleep .5`
+        -   Introduces a short delay in script execution for better readability.
+    -   Remove Raw Domain Names File:
+        -   `rm ${pcap##/}.$date/${pcap##/}.$date.Domain_Names_Raw.txt`
+        -   Deletes the raw domain names file to save space and maintain cleanliness
+    -   Capture and Sort Unique Domain Names:
+        -   `tshark -r ${pcap##/} -T fields -e ip.src -e dns.qry.name -2R "dns.flags.response eq 0" | awk -F" " '{ print $2 }' | sort -u 2> /dev/null 1> ${pcap##/}.$date/${pcap##/}.$date.Domain_Names_LIST.txt*`
+        -   Uses tshark to capture DNS query names and source IP addresses for non-response DNS traffic.
+        -   Uses awk to extract the domain names.
+        -   Sorts and removes duplicates from the list.
+        -   Redirects errors to /dev/null and saves the unique domain names to another text file.
+    -   Print Separator and Blank Lines
+        -   `echo " " echo "**********************************************************************************" echo " "`
+        -   Outputs a separator line and a blank line for clear visual demarcation.
+
+### Automating Hostname Extraction
+
+-   ![66](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/5ebab166a3ae700e0bdd424bf37b9c0ec9b316bb612deae8f3cfac0c9d8c6e106b5120c8fbaf58f317cb732fe34f.png)
+-   Print Message:
+    -   `echo -e "\t Extracting Host Names Found: View full extracted Hostnames at ${pcap##/}.$date directory"\*`
+        -   Outputs a message indicating that the script is about to extract hostnames.
+    -   Pause Execution:
+    -   `sleep .5`
+        -   Introduces a short delay in script execution for better readability.
+    -   Capture Kerberos CNameString Information:
+    -   `tshark -t ad -r ${pcap##/} -C pcapextract -Y "kerberos.CNameString" | awk -F" " '{ print $1,$2,$3,$4,$5,$6,$9}' | cname > ${pcap##/}.$date/${pcap##/}.$date.HOSTNAMES.txt\*`
+        -   Uses tshark to capture Kerberos CNameString information from the PCAP file.
+        -   Uses awk to extract specific fields (timestamp, source and destination IP addresses, and the Kerberos CNameString itself).
+        -   Redirects the output to a text file using a function called cname.
+        -   Here’s the code snippet for function cname to make the output readable
+        -   ![67](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/5ac1c03326bc0db02dee1c5de97d422ac3d5d3d1872a171b20ed7eaacce3b7ffc44236f073bbd6c9e168dddbb974.png)
+    -   Pause Execution and Display the First 5 Lines of Hostnames:
+        -   `sleep .5 head -n5 ${pcap##/}.$date/${pcap##/}.$date.HOSTNAMES.txt`
+            -   Introduces another short delay in script execution for better readability.
+            -   Uses head to display the first 5 lines of the extracted hostnames.
+        -   Print Blank and Separator
+        -   `echo echo "**************************************************************************************" echo`
+            -   Outputs a blank line for enhanced visual separation.
+            -   Outputs a separator line for clear visual demarcation.
+            -   Outputs a blank line for further visual clarity.
+
+### Automating Export File Hashing
+
+-   ![68](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/0bd2fdd6cee309f5b4a474614c36b6971aca96d2c195c3302c5ce5f98c45e242d50f3a622dc5f2c46f16ee8cf683.png)
+-   Path and Variable Setup:
+    -   `z="${pcap##/}.$date/${pcap##/}.$date.EXPORT"`
+        -   This line creates a variable z by constructing a path based on the current pcap file (${pcap##\*/}) and the current date.
+-   Search for file with \*.PDF extension:
+    -   `*pdf=$(find $dir -name .pdf)`
+        -   Searches for files with a ".pdf" extension in the directory specified by $dir and assigns the result to the variable pdf.
+-   Export Directory Handling:
+    -   `if [ -n $z ]`
+    -   Checks if the export path (z) is non-empty.
+    -   If non-empty:
+        -   Changes the current directory to z.
+        -   Outputs messages indicating the extraction of hash values.
+        -   Executes the hash command and formats the output.
+        -   Changes the current directory back to the original directory.
+    -   `hash | sed 'N;s/\\n/ /'`
+-   Executes the hash function and uses sed to replace newline characters with spaces in the output.
+-   Here’s the sample code snippet for hash function:
+-   ![69](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/7eb6b54c90a6a3f926c6ca1aaadb289edc6b86b2f933e3275da3a6cc15bc088447e185e2c9b18df5144427549bd4.png)
+-   If empty, outputs "Export Directory is empty."
+    Conditional Processing:
+
+    -   `else`
+        -   `echo "Export Directory is empty"`
+    -   `fi`
+
+-   `else`
+    -   `echo "No GET method found"`
+-   `fi`
+-   `else`
+-   `echo "empty"`
+-   `fi`
+
+-   Handles nested conditional statements:
+    -   If there is a GET method in the pcap file, it processes the file, extracts various information (IP addresses, domain names, etc.), and prints the results.
+    -   If there is no GET method, it outputs "No GET method found."
+    -   If the pcap file is empty, it outputs "empty."
+
+### Quiz ☠️
+
+1. Did you have fun learning how Scripting can help you in your daily tasks? Click "YES" to complete
+
+-   `Yes`
+
+2. Did you have fun learning how Scripting can automate 'Boring Tasks'? Type "YES" to complete
+
+-   `YES`
