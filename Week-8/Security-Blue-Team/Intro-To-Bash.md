@@ -1,95 +1,302 @@
-# Introduction to Bash [(Security Blue Team)](https://elearning.securityblue.team/home/courses/free-courses/introduction-to-bash#content)
+# Introduction to Bash (Security Blue Team)
 
 ## Getting Started
 
 ### Introduction to Command Line
 
--   Command line is a text-based interface for interacting with a computer's OS, and requires users to type text commands to perform tasks
--   Terminal emulators are software applications that provide a gui for accessing the command line.
-    -   They mimic the behavior of physical computer terminals
+-   Command line is a text-based interface for interacting with a computer's OS - you type commands to perform tasks
+-   Terminal emulators provide a GUI for accessing the command line (they simulate old physical computer terminals)
 -   Shells are command line interpreters that process your commands
-    -   Bash is one of the most popular shell, and other shells include Zsh, Fish, and more.
+    -   Bash is the most popular shell, others include Zsh, Fish, etc.
 
 ### Navigating the File System
 
--   `ls` - List
+**`ls` - List**
 
-    -   Used to list the files and directories in the current working directories
-    -   Uses Cases:
-        -   Checking contents of a directory to see which files and subdirectories are present
-        -   Verifying the existence of specific files or directories
-        -   Specifying the `l` option provides more information regarding the file permissions, owner, size, and modification date
-        -   ![1](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/17d76689a4bbe85ba7852c4593b1b72e9268e6f7b66cd6f889cdb132932a81f7ae9c858f285af4d6d6afe83126a7.png)
-        -   File type and permissions are shown as `drwxr-xr-x`
-            -   `d` represents directory
-            -   `r` represents reading permissions for that user
-            -   `w` represents writing permissions for that user
-            -   `x` represents execution permissions for that user
+-   Lists files and directories in current working directory
+-   Common uses:
+    -   Check directory contents to see files and subdirectories
+    -   Verify if specific files/directories exist
+    -   `ls -l` gives detailed info: permissions, owner, size, modification date
+    -   File permissions shown as `drwxr-xr-x` where:
+        -   `d` = directory
+        -   `r` = read permissions
+        -   `w` = write permissions
+        -   `x` = execute permissions
 
--   `cd` - Change Directory
+**Example:**
 
-    -   Used to change the current working directory, allowing the user to navigate the file system by moving into different directories
-    -   Use Cases:
-        -   Changing to a specific directory to access its contents
-        -   Navigating to parent or child directories
-        -   Using the `~` character to quickly switch to home directory
-        -   ![2](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/15675661f27c3dab53f51ba0bd363e253a87ba66ce79bd7c23fca292f76159bb1e42c341e1a05049f6f2fd816195.png)
-        -   To change to a specific directory: `cd /path/to/directory`
-        -   To navigate to the home directory: `cd ~`
-        -   To go up one level to the parent directory `cd ..`
+```
+Input: ls -l
+Output:
+drwxr-xr-x 2 user user 4096 Jan 15 10:30 Documents
+-rw-r--r-- 1 user user 1234 Jan 15 09:45 notes.txt
+-rwxr-xr-x 1 user user  512 Jan 14 16:20 script.sh
+```
 
--   `pwd` - Print Working Directory
-    -   Used to display current working directory, showing the full path of the directory the user's in
-    -   Use Cases:
-        -   Confirming user's current location in the file system
-        -   Using the output of pwd as part of a command or script
-    -   ![3](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/8a8410492f8a79f5eea8ec64b45670089c1fe05a1ed201aad514d2dc0daefb74830011c2304b3bbaa8b5097e8385.png)
+**`cd` - Change Directory**
+
+-   Changes current working directory to navigate the file system
+-   Usage examples:
+    -   `cd /path/to/directory` - go to specific directory
+    -   `cd ~` - go to home directory
+    -   `cd ..` - go up one level to parent directory
+
+**`pwd` - Print Working Directory**
+
+-   Displays current working directory with full path
+-   Useful for confirming current location or using output in scripts
 
 ### Working with Files and Directories
 
--   `touch` - Used to create new, empty files or update the timestamp of existing files
+**`touch`**
 
-    -   If the specified file does not exist, touch will create it.
-    -   Use Cases:
-        -   Creating a new empty file: `touch filename.txt`
-        -   Update the modification timestamp of a file: `touch existingfile.txt`
-    -   ![4](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/34a68d27e318a32cede1c8be4d2c504f435d823cddce1e1398090805ddb893e48af65ee12c4e208daf4b31fdcc27.png)
+-   Creates new empty files or updates timestamps of existing files
+-   Examples: `touch filename.txt` or `touch existingfile.txt`
 
--   `mkdir` (Make Directory) - Used to create new directories (folders) within the file system, allowing a more organized and structured file system
+**`mkdir` (Make Directory)**
 
-    -   Use Cases:
-        -   Creating a new directory: `mkdir directory_name`
-        -   Creating nested directories: `mkdir -p parent_directory/child_directory`
-    -   ![5](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/a2f84ad9dd4cfe089b95de6de0634e1f20e458d5be1931cf35dc4894d865a0111bc7c04ba34bb7f64de1165a6fd1.png)
+-   Creates new directories for organized file system structure
+-   `mkdir directory_name` - creates single directory
+-   `mkdir -p parent_directory/child_directory` - creates nested directories
 
--   `rm` (Remove) - Used to remove files or directories
-    -   **Be cautious** when using this command, as deleted files are typically **not** recoverable, and removing directories with contents requires special handling
-    -   Use Cases:
-        -   Removing a file: `rm filename.txt`
-        -   Removing a directory and its contents _(use with caution)_: `rm -r directory_name`
-        -   Force removing a directory and its contents _(use with caution)_: `rm -rf directory_name`
-            -   The `f` here skips the recurring prompts asking for confirmation
-    -   ![6](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/34775de678464769176d840e4e221b903cc586fdf713c7790f41bc695ddffb2adb1e70496a158d1b526bfda4ec2c.png)
+**`rm` (Remove)**
+
+-   Removes files or directories
+-   **CAUTION**: Deleted files typically NOT recoverable!
+-   `rm filename.txt` - remove file
+-   `rm -r directory_name` - remove directory and contents
+-   `rm -rf directory_name` - force remove without confirmation prompts
 
 ### Copying and Moving Files
 
--   `cp` (Copy) - Used to copy files or directories from one location to another, by creating a duplicate of the source file or directory in the destination
+**`cp` (Copy)**
 
-    -   Use Cases:
-        -   Copying a file to a different directory: `cp file.txt /path/to/destination/`
-        -   Copying multiple files into a directory: `cp file1.txt file2.txt directory/`
-        -   Copying a directory and its contents: `cp -r source_directory/ destination_directory/`
-    -   ![7](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/92cd039b63b4390233a010d3eca6640bae5897259da573190d4d563f876580cedd26f3d420cc3c13868019f11c9d.png)
+-   Copies files/directories from one location to another, creating duplicates
+-   `cp file.txt /path/to/destination/` - copy file to different directory
+-   `cp file1.txt file2.txt directory/` - copy multiple files
+-   `cp -r source_directory/ destination_directory/` - copy directory and contents
 
--   `mv` (Move) - Used to move files or directories from one location to another
-    -   Unlike `cp`, it does not create a duplicate; it transfers the original to the new location
-    -   Use Cases:
-        -   Moving a file to a different directory: `mv file.txt /path/to/destination/`
-        -   Renaming a file: `mv oldname.txt newname.txt`
-        -   Moving a directory and its contents: `mv source_directory/ destination_directory/`
-    -   ![8](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/90b1019f98e9e4adb0a7d245e93a13e8b523a53f5d3dbfb7e8aa1461805d48fb8cbcb653b3916d4a23940c07a66f.png)
+**`mv` (Move)**
 
-### Quiz:
+-   Moves files/directories (transfers original, no duplicate like cp)
+-   `mv file.txt /path/to/destination/` - move file
+-   `mv oldname.txt newname.txt` - rename file
+-   `mv source_directory/ destination_directory/` - move directory
+
+## Basic Commands
+
+### Viewing File Content
+
+**`cat` (Reading Files)**
+
+-   Concatenates and displays entire file contents on terminal
+-   Simple way to quickly view file from start to finish
+
+**`less`**
+
+-   Interactive pager for viewing files one screen at a time
+-   Navigation options: scroll, search text, move forward/backward
+
+**`more`**
+
+-   Similar to less but with fewer interactive features
+-   Good for scanning files without overwhelming terminal
+-   Use cases: reading logs, config files, large text files
+
+### Text Searching using GREP
+
+GREP = "Global Regular Expression Print"
+
+-   Powerful tool for searching and extracting text patterns in files
+-   Essential for data extraction, log analysis, code searching
+
+Basic syntax: `grep [options] pattern [file]`
+
+Key features:
+
+-   Supports regular expressions for complex pattern matching
+-   Case-sensitive by default (use `-i` for case-insensitive)
+-   Can search multiple files simultaneously
+-   Output control options (line numbers, context)
+
+**GREP Usage Examples:**
+
+-   Basic search: `grep "search_term" file.txt`
+-   Case-insensitive: `grep -i "search_term" file.txt`
+-   Extended regex: `grep -E 'pattern' file.txt`
+-   Show line numbers: `grep -n "pattern" file.txt`
+
+**Examples:**
+
+```
+Input: grep "error" logfile.txt
+Output:
+Error: Connection failed
+Fatal error: Memory allocation failed
+
+Input: grep -n -i "ERROR" logfile.txt
+Output:
+3: Error: Connection failed
+7: Fatal error: Memory allocation failed
+12: WARNING: Error in configuration
+```
+
+**GREP Use Cases:**
+
+-   Log analysis: extract specific events/errors from log files
+-   Code searching: find functions, variables, code snippets
+-   Data extraction: pull structured data from unstructured text
+-   System admin: find config settings, diagnose issues
+
+### Identifying File Information
+
+**`file` command**
+
+-   Determines file type and format
+-   Identifies file nature (text, image, executable, etc.) without relying on extensions
+-   Useful for verifying downloaded file integrity and security
+
+### User and Group Management
+
+**`whoami`** - Shows username of current logged-in user
+**`id`** - Shows detailed user/group info including UID, GID, group memberships
+
+Key points:
+
+-   Understanding active user context is crucial for permission-based tasks
+-   `id` helps identify group memberships for access control verification
+
+### File Permissions
+
+**`chmod`** - Changes file permissions (read, write, execute)
+**`chown`** - Changes file owner and group
+
+Important concepts:
+
+-   `chmod` uses octal notation (644, 755, etc.)
+-   `chown` typically used by system administrators
+-   Example: `chmod +x script.sh` allows script execution
+
+**Permission Examples:**
+
+```
+Input: ls -l script.sh
+Output: -rw-r--r-- 1 user user 245 Jan 15 10:00 script.sh
+
+Input: chmod +x script.sh
+Input: ls -l script.sh
+Output: -rwxr-xr-x 1 user user 245 Jan 15 10:00 script.sh
+
+Input: chmod 644 file.txt
+Input: ls -l file.txt
+Output: -rw-r--r-- 1 user user 1024 Jan 15 10:00 file.txt
+```
+
+**Understanding Permission Digits:**
+Three digits represent owner, group, others permissions:
+
+-   4 = Read, 2 = Write, 1 = Execute
+-   Add values for combined permissions
+
+Common examples:
+
+-   400: Read for owner only
+-   644: Read/write owner, read-only group/others
+-   755: Full control owner, read/execute group/others
+-   777: Full control everyone (not recommended)
+
+## Process Listing and Management
+
+**`ps` (Process Status)**
+
+-   Lists currently running processes with PIDs, terminals, CPU/memory usage
+-   `ps aux` shows detailed list of all processes
+
+**Example:**
+
+```
+Input: ps aux
+Output:
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1 168588 11016 ?        Ss   09:00   0:01 /sbin/init
+user      1234  2.1  5.2 892456 85432 ?        Sl   09:15   0:45 /usr/bin/firefox
+user      1456  0.0  0.1  21584  4532 pts/0    Ss   09:20   0:00 bash
+user      1789  0.0  0.0  19312  1876 pts/0    R+   10:30   0:00 ps aux
+```
+
+**`top` (Process Viewing)**
+
+-   Interactive, dynamic process viewer with real-time updates
+-   Shows system performance including CPU and memory usage
+
+**`kill` (Terminate Process)**
+
+-   Terminates processes by PID
+-   Can send different signals (SIGTERM -15 for graceful termination)
+-   Example: `kill -15 PID`
+
+**`killall` (Terminate All Process)**
+
+-   Terminates processes by name rather than PID
+-   Example: `killall -9 firefox` forcefully kills all Firefox instances
+
+**`bg` and `fg` (Background/Foreground)**
+
+-   Manage background and foreground jobs
+-   `bg %1` moves job ID 1 to background
+-   `fg` brings backgrounded job to foreground
+
+**`nice` and `renice`**
+
+-   Set and adjust process priority
+-   Lower values = higher priority = more CPU time
+-   `nice` starts new process with specific priority
+-   `renice` modifies existing process priority
+
+**`htop`** - Enhanced interactive process viewer with user-friendly interface
+
+**`strace` (Syscall Trace)** - Traces system calls and signals for troubleshooting
+
+## Introduction to Pipes
+
+Pipes connect multiple commands together for data processing and manipulation.
+
+**Using Pipes:**
+
+-   Pipe symbol `|` connects stdout of one command to stdin of another
+-   Allows data to flow from command to command
+-   Example: `cat sample.txt | grep "^A" | sort`
+    -   `cat sample.txt` displays file contents
+    -   `grep "^A"` filters lines starting with "A"
+    -   `sort` alphabetically sorts the results
+
+**Pipe Examples:**
+
+```
+Input: cat names.txt
+Output:
+Alice
+Bob
+Anna
+Charlie
+Andrew
+
+Input: cat names.txt | grep "^A" | sort
+Output:
+Alice
+Andrew
+Anna
+
+Input: ps aux | grep firefox
+Output:
+user      1234  2.1  5.2 892456 85432 ?    Sl   09:15   0:45 /usr/bin/firefox
+user      1567  0.0  0.1  12345  2341 pts/0 S+   10:35   0:00 grep firefox
+```
+
+This creates powerful command pipelines for complex data processing tasks.
+
+### Quiz: Getting Started
 
 1. What is the primary purpose of the command line in Unix-like systems?
     - To provide a graphical interface for easier file management
@@ -132,156 +339,7 @@
     - Use root access for daily operations to avoid permission issues
     - Avoid using command line interfaces in favor of GUI tools
 
-## Basic Commands
-
-### Viewing File Content
-
--   `cat` (Reading Files)
-
-    -   The cat command is used to concatenate and display the entire contents of a file on your terminal.
-    -   It's a straightforward way to quickly view a file's content from start to finish
-    -   ![9](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/3b71305c243ee67c09b6e0aee5f7db1618c5c3f70d72740b88f6f3af795cc9988f626ca90b43f82696d02f2630b0.png)
-
--   `less`
-
-    -   The less is an interactive pager that enables you to view file contents one screen at a time.
-    -   It provides navigation options, allowing you to scroll through the content, search for text, and move forward and backward within the file
-    -   ![10](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/6a4274b7a1336d4e310d487313ca5ad149968897f581783ce24fb74ecf994ad7a56d36d04704372d70ac7bc02003.png)
-
--   `more`
-    -   Similar to less, more is a pager that displays text files one screen at a time.
-    -   It doesn't have as many interactive features as less but is still useful for quickly scanning through files without overwhelming your terminal with too much content
-    -   Use Cases:
-        -   Reading log files.
-        -   Inspecting configuration files.
-        -   Viewing large text files systematically.
-    -   ![11](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/8e164038e305ba8be14dbe39b80798041b4b33ded4e4f02ac1bb2b853d700c265ee2122540ca71d6b3e27a7c784b.png)
-
-### Text Searching using GREP
-
--   GREP stands for "Global Regular Expression Print."
--   It is a powerful command-line tool used for searching and extracting text patterns within files.
--   Grep is an essential utility for finding specific content within text files and is particularly valuable for tasks like data extraction, log analysis, and code searching.
-
--   Basic Usage:
-
-    -   `grep [options] pattern [file]`
-    -   `pattern`: The text or regular expression you want to search for.
-    -   `file` (optional): The file(s) in which you want to search. If not specified, grep will read from standard input.
-
--   Key Features:
-
-    -   Regular Expressions: Grep supports regular expressions, which are powerful text patterns for matching complex strings. This allows you to find text that follows specific patterns or contains certain keywords.
-    -   Case Sensitivity: By default, grep is case-sensitive. You can use the `i` option to perform case-insensitive searches.
-    -   Multiple Files: Grep can search across multiple files simultaneously, making it efficient for finding information in entire directories of text files.
-    -   Output Control: Grep provides options to control the output, such as showing line numbers or the context around matched lines.
-
--   GREP Usage Examples:
-
-    -   **We will be using the file `Module2_test_file.txt` for searches**
-    -   Basic search for a word in a file: `grep "search_term" file.txt`
-    -   This command searches for the exact occurrence of "`search_term`" in the `file.txt`
-        -   ![12](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/89bf40634823467d93ca22a7c947bd4192a6b24a086358e42617ee1f94c4bc0f7c1973746e2ace6cf8efb7325789.png)
-    -   Search for a word case-insensitively: `grep -i "search_term" file.txt`
-    -   The `i` option makes the search case-insensitive, allowing you to find "`search_term`" regardless of its letter case.
-        -   ![13](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/4aa370c6b5cf43a3d6bf8c798607a99f9e9459b3c83c74f9c0bf092ada3d35e12af51f2f3c40bdcd7019d9844cd0.png)
-    -   Use regex pattern for searching: `grep -E ‘pattern’ file.txt`
-    -   The `E` option enables extended regular expressions, allowing you to search using more complex patterns.
-        -   ![14](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/cc37d4024c03a54635684b8d84fecb7361410581d9017e8947dae5409f19322623fa6e85129f1caba8c6e64ef514.png)
-    -   Display line numbers with matches: `grep -n "pattern" file.txt`
-    -   The n option shows line numbers for each matching line in the output.
-        -   ![15](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/f9dcd3e39e8909ffb2e4fbaf54a36d63eee4136534593eb4f668e546aaee4d673a247217bc6bbab40259cb6669ed.png)
-
--   GREP Use Cases:
-    -   Log Analysis: Grep is commonly used to extract specific events or errors from log files, helping diagnose issues in software systems.
-    -   Code Searching: Developers use grep to search for functions, variables, or specific code snippets in source code files.
-    -   Data Extraction: It's useful for extracting structured data from unstructured text files, such as extracting email addresses or phone numbers from a document.
-    -   System Administration: System administrators rely on grep to find configuration settings or diagnose issues by searching through system logs.
-
-### Identifying File Information
-
--   `file`
-    -   The `file` command is used to determine the type and format of a file.
-    -   It helps you identify the nature of a file, such as whether it is a text file, an image, an executable, or another type, without relying solely on file extensions.
-    -   Identifying File Types without Relying on Extensions: The `file` command is particularly useful when file extensions are missing or unreliable. It offers a way to inspect the contents of a file and determine its format accurately.
-    -   Verifying the Integrity of Downloaded Files: When downloading files from the internet, you can use `file` to verify that the downloaded file matches its expected type. This helps ensure the integrity of downloaded content and prevents potential security risks.
-    -   ![16](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/97eb6d7366147407f992af74586a2d5aaa2c3099fc6c5f01b783ef25d98d68a2c9401cb5cf1d9b8779a6aa84cd72.png)
-
-### User and Group Management
-
--   `whoami`
-
-    -   The `whoami` command is used to display the username of the current user who is logged into the system. It helps you quickly identify the user context you are operating within.
-
--   `id`
-
-    -   The `id` command is used to show detailed user and group information, including the user's UID (User ID), GID (Group ID), and group memberships.
-
--   Key Points:
-
-    -   Understanding the Active User Context: whoami and id are valuable for understanding your current user context. They provide information about your identity, which is crucial when performing tasks that require certain permissions.
-    -   Checking Group Memberships: The id command, in particular, helps you identify your group memberships. This is essential for tasks where group-based access control is in place or when you need to confirm your access to specific resources.
-    -   ![17](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/60da09207a6b981f011a13082b151256c3bd0311db014e72fae154299b738a817d6b3f3430ee54e7aa210516b843.png)
-
--   File Permissions
-
--   `chmod`
-
-    -   The `chmod` command is used to change file permissions, allowing you to specify who can read, write, and execute a file. It operates on both individual files and directories and provides fine-grained control over access rights.
-
--   `chown`
-
-    -   The `chown` command is used to change the owner and group of a file. It is commonly used by system administrators to modify file ownership and group assignments.
-
--   Key Points:
-
-    -   File Permissions in Octal Notation: `chmod` allows you to set file permissions using octal notation (e.g., 644, 755). This notation provides a concise way to express permission settings.
-    -   Ownership Changes for System Administrators: `chown` is typically employed by system administrators when files or directories need to be reassigned to different users or groups. It is an essential tool for managing file ownership in multi-user environments.
-
--   Using `chmod` to allow script execution `x`
-
-    -   First, we created a simple shell script “`.sh`” extension.
-    -   Then, we inspect the permission of the file using ‘`ls -l`’ where we can see there’s no ‘`x`’ indicated. (RED BOX)
-    -   Next, we execute it by running ‘`./testfile.sh`’ and as we expected it denied the execution.
-    -   Now, we use ‘`chmod +x`’ command where we assign ‘`x`’ execute permission to the script and we can see that a ‘`x`’ is added when we list the file again using ‘`ls -l`’. (YELLOW BOX)
-    -   Finally, we try to execute it and the script runs and print the word ‘`test`’.
-    -   ![18](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/62f851e5857cdf1586b410dc4d4bc9608f47e16cf8e6095f478d9aa1334206445c4f6ae69812bf65d4840f890add.png)
-
--   Understanding File Permission Digits
-    -   File permissions in Unix-like operating systems are represented by a three-digit number, often called an octal (base-8) number, where each digit corresponds to a different permission category.
-    -   The three digits represent the permissions for the owner, the group, and others, respectively. Here's how it works:
-        -   First Digit: Owner's Permissions
-            -   4: Read (`r`) permission
-            -   2: Write (`w`) permission
-            -   1: Execute (`x`) permission
-        -   Second Digit: Group's Permissions
-            -   4: Read (`r`) permission
-            -   2: Write (`w`) permission
-            -   1: Execute (`x`) permission
-        -   Third Digit: Others' Permissions
-            -   4: Read (`r`) permission
-            -   2: Write (`w`) permission
-            -   1: Execute (`x`) permission
-    -   To calculate the permission number, you add up the values for the specific permissions you want to assign. For example:
-        -   **Read-only**: 4 (owner) + 4 (group) + 4 (others) = 444
-        -   **Read and write for owner, read-only for group and others**: 4 (owner read) + 2 (owner write) + 4 (group read) + 4 (others read) = 644
-        -   **Full control for owner, read-only for group and others**: 4 (owner read) + 2 (owner write) + 1 (owner execute) + 4 (group read) + 4 (others read) = 744
-        -   **Execute permission for all**: 1 (owner execute) + 1 (group execute) + 1 (others execute) = 111
-    -   Example octal permission numbers
-        -   **400**: Read permission for the owner only.
-        -   **644**: Read and write for the owner, read-only for group and others.
-        -   **755**: Read, write, and execute for the owner, read and execute for group and others (common for executable files).
-        -   **777**: Full control for everyone (not recommended for security reasons).
--   Using ‘`chown`’ to change the file owner and group.
-    -   For this demo we will be using the user “`elearning`” as our sample user and the contents of “`Pictures`” directory .
-        -   First, we list the details of directory content using ‘`ls -l`’ command.
-        -   Then, we use ‘`sudo chown elearning: Pictures/<file>`’ command to change the file owner from ‘`ubuntu`’ to ‘`elearning`’.
-        -   Then, we use ‘`ls -l`’ to inspect the details of the files to see if it changes the owner. Here, we can see the changes.
-        -   Now, we want to change the group owner of the same file by running ‘`sudo chown elearning:ubuntu Pictures/<file>`’ command
-        -   Finally, we list again to see if the group owner changed to our desired group.
-        -   ![19](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/5851395aeb4700c52de34bbe3cf2cec0cb155dd3613bd2b36ee124376e04aebfe36549f92058c73e07415d345dc3.png)
-
-### Quiz
+### Quiz: Basic Commands
 
 1. Which command is used to display the entire contents of a text file in Bash?
     - ls
@@ -314,66 +372,7 @@
     - chmod
     - usermod
 
-## Process Listing and Management
-
-### Process Listing and Management
-
--   `ps` (Process Status)
-
-    -   Used to list the currently running processes on a users system
-    -   Provides information about these processes, including their process IDs (PIDs), associated terminals, CPU and memory usage, and more
-    -   Example: `ps aux` displays a detailed list of all processes
-    -   ![20](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/54665658c300b28346dcb219e2a8b85a55ceab9b8892e6ef3c991209ea8fb86afbcb93645cfeb0af623300c60cf9.png)
-
--   `top` (Process Viewing)
-
-    -   An interactive and dynamic process viewer that continuously updates and displays information about running processes
-    -   Real-time view of system performance, including CPU and memory usage
-    -   ![21](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/13bae1512e9c4e70af24fe94af7dd3a615751bb1b0ccc7ec7e5632b78dfd923959fd5dcde9131e6bf18db62fbfc0.png)
-
--   `kill` (Terminate Process)
-
-    -   Used to terminate processes
-    -   `PID` can be specified to terminate a specific process
-    -   `kill` can send different signals to processes, with `SIGTERM` (15) being a common one for graceful termination
-    -   Example: `kill -15 PID`, this terminates a process with specified PID using `SIGTERM` signal
-    -   ![22](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/6eefe406c07f1b7eacc6f9b8dd00f1d33a920c1c135c97f491b8d5f52bc34aedf301f20dc9462bafa1c2f6edfbcb.png)
-    -   Firefox is listed with the `PID 5390`
-    -   ![23](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/ddc8542fabbacc30d5c7e4e7670e59fdb6fd190a4faa2bda2f72f6ddc43f4e8903f4cecacfd3668660706c0efb8e.png)
-
--   `killall` (Terminate All Process)
-
-    -   Used to terminate processes by their name rather than their PID
-    -   Example: `killall -9 firefox`, forcefully terminates all running instances of the Firefox browser
-    -   ![24](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/ed75b3955f258bd9ba588cfb64a5467eb8c60a2145f1ede8f42c20ed37c4d408bd32c55945f3099e28897ce9cf65.png)
-    -   ![25](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/62dddb289783551e51c9ef36b2686af048d2ffb4c030b7589167f3f9049e979ac574b5f94c327c787cdfa10abfeb.png)
-
--   `bg` and `fg` (Background and Foreground)
-
-    -   These commands are used to manage background and foreground jobs
-    -   `bg` moves a stopped or foreground job to the background, and `fg` brings a backgrounded job to the foreground for interaction
-    -   `bg %1` moves the job ID 1 to the background
-
--   `nice` and `renice`
-
-    -   `nice` and `renice` are used to set and adjust the priority of processes
-    -   Lower values represent higher priority, and processes with higher priority get more CPU time
-    -   `nice` is used to start a new process with specific priority
-    -   `renice` modifies the priority of an already running process
-    -   Example: `nice -n -10 my process` starts a process with a higher priority
-
--   `htop` (Monitor System Processes)
-
-    -   Interactive process viewer similar to `top` but with additional features and a more user-friendly interface
-    -   Provides detailed overview of system processes and their resource usage
-    -   ![26](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/6cadea4c70e5f11f0679a4761f9639c1cabfef4555d183ca9a0a63b058512203f0ee23e984661da521fc581b46ad.png)
-
--   `strace` (Syscall Trace)
-    -   A diagnostic tool used to trace system calls and signals for a process
-    -   Invaluable for troubleshooting and understanding a process's behavior
-    -   Example: `strace -p PID` traces the system calls of a process with the specified PID
-
-### Quiz
+### Quiz: Process Management
 
 1. Which command is used to display a list of currently running processes?
     - ls
@@ -401,22 +400,7 @@
     - ps -e ✅
     - ps -r
 
-## Introduction to Pipes
-
-### Pipes
-
--   Pipes allow users to connect multiple commands together, creating command pipelines for data processing and manipulation
--   Using Pipes to connect commands
-    -   The pipe symbol `|` is a special operator that connects the standard output (`stdout`) of one command to the standard input (`stdin`) of another
-    -   This connection allows data to flow from one command to the next
--   Use Cases:
-    -   piping multiple commands: `cat`, `grep`, and `sort`
-    -   ![27](https://d2y9h8w1ydnujs.cloudfront.net/uploads/content/images/1fb8bd92c442dca5ba8ab38ad195c4ff1cd3efb0f76c7b4ce8f2f6b345598f446de82921fb45fb3aa006f9944b54.png)
-    -   `cat sample.txt` displays the contents of the "`sample.txt`" file
-    -   `grep "^A"` searches for the lines that start with the letter A where the `^` is used to specify the start of a line
-    -   `sort` as the name suggests, sorts the filtered names alphabetically
-
-### Quiz
+### Quiz: Pipes
 
 1. What is the main function of pipes in Unix-like systems?
     - To increase the processing speed of the CPU
@@ -443,5 +427,3 @@
     - They allow for the combination of multiple tools and commands to perform complex tasks efficiently. ✅
     - They prevent errors by managing command dependencies.
     - They increase the security of command executions.
-
-## For the next 2 modules refer to [Week 9 Security Blue Team Folder](../../Week-9/Security-Blue-Team/Intro-To-Bash.md)
