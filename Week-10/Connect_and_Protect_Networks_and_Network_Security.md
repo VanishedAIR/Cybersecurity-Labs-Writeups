@@ -751,41 +751,42 @@ A **firewall** is a network security device that monitors traffic to and from yo
 
 #### Firewall functions
 
-- **Port filtering:**  
-  Blocks or allows certain port numbers to limit unwanted communication.  
-  Example: Allow only port 443 (HTTPS) or port 25 (email), block others.
+-   **Port filtering:**  
+    Blocks or allows certain port numbers to limit unwanted communication.  
+    Example: Allow only port 443 (HTTPS) or port 25 (email), block others.
 
-- **Security policy:**  
-  Firewall settings are determined by the organization's security policy.
+-   **Security policy:**  
+    Firewall settings are determined by the organization's security policy.
 
 #### Types of firewalls
 
-- **Hardware firewall:**  
-  Physical device that inspects each data packet before it enters the network. Basic defense against threats.
+-   **Hardware firewall:**  
+    Physical device that inspects each data packet before it enters the network. Basic defense against threats.
 
-- **Software firewall:**  
-  Program installed on a computer or server.  
-  - On a computer: Analyzes all traffic received by that device.
-  - On a server: Protects all devices connected to the server.
-  - Typically costs less and doesn't require extra space, but adds processing burden.
+-   **Software firewall:**  
+    Program installed on a computer or server.
 
-- **Cloud-based firewall (Firewall as a Service, FaaS):**  
-  Software firewall hosted by a cloud service provider.  
-  - Organizations configure rules via the provider's interface.
-  - Protects both onsite networks and cloud assets.
+    -   On a computer: Analyzes all traffic received by that device.
+    -   On a server: Protects all devices connected to the server.
+    -   Typically costs less and doesn't require extra space, but adds processing burden.
+
+-   **Cloud-based firewall (Firewall as a Service, FaaS):**  
+    Software firewall hosted by a cloud service provider.
+    -   Organizations configure rules via the provider's interface.
+    -   Protects both onsite networks and cloud assets.
 
 #### Stateful vs. stateless firewalls
 
-- **Stateful firewall:**  
-  Tracks information passing through, analyzes traffic for suspicious behavior, and proactively filters threats.
+-   **Stateful firewall:**  
+    Tracks information passing through, analyzes traffic for suspicious behavior, and proactively filters threats.
 
-- **Stateless firewall:**  
-  Operates based on predefined rules, does not track information from data packets, and only acts according to programmed rules. Less secure than stateful firewalls.
+-   **Stateless firewall:**  
+    Operates based on predefined rules, does not track information from data packets, and only acts according to programmed rules. Less secure than stateful firewalls.
 
 #### Next Generation Firewall (NGFW)
 
-- Provides stateful inspection and additional security functions like deep packet inspection and intrusion protection.
-- May connect to cloud-based threat intelligence services for rapid updates against emerging threats.
+-   Provides stateful inspection and additional security functions like deep packet inspection and intrusion protection.
+-   May connect to cloud-based threat intelligence services for rapid updates against emerging threats.
 
 ---
 
@@ -799,17 +800,18 @@ A **virtual private network (VPN)** is a network security service that changes y
 
 #### How VPNs protect your data
 
-- **Encryption:**  
-  VPNs encrypt your data as it travels across the internet, preserving confidentiality.
+-   **Encryption:**  
+    VPNs encrypt your data as it travels across the internet, preserving confidentiality.
 
-- **Encapsulation:**  
-  VPN services encapsulate your data in transit by wrapping sensitive data in other data packets.  
-  - The MAC and IP address of the destination device are normally visible in packet headers and footers, which can expose your network's location.
-  - Encapsulation allows VPNs to encrypt your data packets and then wrap them in outer packets that routers can read, so your requests reach their destination while your personal data remains unreadable in transit.
+-   **Encapsulation:**  
+    VPN services encapsulate your data in transit by wrapping sensitive data in other data packets.
 
-- **Encrypted tunnel:**  
-  VPNs create an encrypted tunnel between your device and the VPN server.  
-  - The encryption is unbreakable without a cryptographic key, preventing unauthorized access to your data.
+    -   The MAC and IP address of the destination device are normally visible in packet headers and footers, which can expose your network's location.
+    -   Encapsulation allows VPNs to encrypt your data packets and then wrap them in outer packets that routers can read, so your requests reach their destination while your personal data remains unreadable in transit.
+
+-   **Encrypted tunnel:**  
+    VPNs create an encrypted tunnel between your device and the VPN server.
+    -   The encryption is unbreakable without a cryptographic key, preventing unauthorized access to your data.
 
 VPNs are essential for maintaining privacy and security, especially when using public networks.
 
@@ -819,10 +821,10 @@ VPNs are essential for maintaining privacy and security, especially when using p
 
 #### Purpose of security zones
 
-- Control who can access different parts of the network
-- Act as barriers to internal networks
-- Maintain privacy within groups or departments
-- Prevent issues from spreading across the entire network
+-   Control who can access different parts of the network
+-   Act as barriers to internal networks
+-   Maintain privacy within groups or departments
+-   Prevent issues from spreading across the entire network
 
 **Example:**  
 A hotel offers free public Wi-Fi for guests, which is kept separate from an encrypted staff network.  
@@ -830,34 +832,34 @@ A university may have a faculty subnet and a separate student subnet; if the stu
 
 #### Types of security zones
 
-- **Uncontrolled zone:**  
-  Any network outside the organization's control, such as the internet.
+-   **Uncontrolled zone:**  
+    Any network outside the organization's control, such as the internet.
 
-- **Controlled zone:**  
-  Subnetworks that protect the internal network from the uncontrolled zone.
+-   **Controlled zone:**  
+    Subnetworks that protect the internal network from the uncontrolled zone.
 
-  - **Demilitarized Zone (DMZ):**  
-    Contains public-facing services (web servers, proxy servers, DNS servers, email/file servers). Acts as a network perimeter.
+    -   **Demilitarized Zone (DMZ):**  
+        Contains public-facing services (web servers, proxy servers, DNS servers, email/file servers). Acts as a network perimeter.
 
-  - **Internal network:**  
-    Contains private servers and sensitive organizational data.
+    -   **Internal network:**  
+        Contains private servers and sensitive organizational data.
 
-  - **Restricted zone:**  
-    Protects highly confidential information, accessible only to privileged employees.
+    -   **Restricted zone:**  
+        Protects highly confidential information, accessible only to privileged employees.
 
 #### Security zone architecture
 
-- The DMZ is ideally placed between two firewalls:
-  - One filters traffic from outside the DMZ.
-  - One filters traffic entering the internal network.
-- The restricted zone may have its own firewall for additional protection.
-- This layered defense prevents attacks from spreading between zones.
+-   The DMZ is ideally placed between two firewalls:
+    -   One filters traffic from outside the DMZ.
+    -   One filters traffic entering the internal network.
+-   The restricted zone may have its own firewall for additional protection.
+-   This layered defense prevents attacks from spreading between zones.
 
 #### Security analyst responsibilities
 
-- Regulate access control policies on firewalls.
-- Control traffic reaching the DMZ and internal network by restricting IPs and ports.
-- Example: Only allow HTTPS traffic to access web servers in the DMZ.
+-   Regulate access control policies on firewalls.
+-   Control traffic reaching the DMZ and internal network by restricting IPs and ports.
+-   Example: Only allow HTTPS traffic to access web servers in the DMZ.
 
 Security zones and segmentation are essential for limiting access, containing threats, and protecting sensitive information within an organization.
 
@@ -867,28 +869,30 @@ Security zones and segmentation are essential for limiting access, containing th
 
 #### Overview of subnetting
 
-**Subnetting** is the subdivision of a network into logical groups called subnets. It works like a network inside a network, dividing a network address range into smaller subnets based on IP addresses and network masks.  
-- Devices on the same subnet communicate directly, improving speed and efficiency.
-- Subnetting can be used to create security zones, isolating traffic and limiting access.
+**Subnetting** is the subdivision of a network into logical groups called subnets. It works like a network inside a network, dividing a network address range into smaller subnets based on IP addresses and network masks.
+
+-   Devices on the same subnet communicate directly, improving speed and efficiency.
+-   Subnetting can be used to create security zones, isolating traffic and limiting access.
 
 **Example:**  
 Two subnets for two networks connected to one router.
 
 #### Classless Inter-Domain Routing (CIDR)
 
-**CIDR** is a method for assigning subnet masks to IP addresses, replacing older classful addressing (Class A–E).  
-- CIDR IP addresses are formatted like IPv4 addresses, followed by a slash and a number (the network prefix):  
-  Example: `198.51.100.0/24`  
-  This includes all IPs from `198.51.100.0` to `198.51.100.255`.
-- CIDR allows professionals to segment networks into smaller chunks, reduces routing table entries, and expands available IPv4 addresses.
+**CIDR** is a method for assigning subnet masks to IP addresses, replacing older classful addressing (Class A–E).
+
+-   CIDR IP addresses are formatted like IPv4 addresses, followed by a slash and a number (the network prefix):  
+    Example: `198.51.100.0/24`  
+    This includes all IPs from `198.51.100.0` to `198.51.100.255`.
+-   CIDR allows professionals to segment networks into smaller chunks, reduces routing table entries, and expands available IPv4 addresses.
 
 You can use online tools (like IPAddressGuide) to convert between CIDR and IPv4 addresses for practice.
 
 #### Security benefits of subnetting
 
-- Creates isolated subnetworks without needing new IP addresses from your ISP.
-- Uses network bandwidth more efficiently and improves performance.
-- Supports physical isolation, routing configuration, and firewall rules for enhanced security.
+-   Creates isolated subnetworks without needing new IP addresses from your ISP.
+-   Uses network bandwidth more efficiently and improves performance.
+-   Supports physical isolation, routing configuration, and firewall rules for enhanced security.
 
 Subnetting and CIDR are essential tools for network efficiency, segmentation, and security.
 
@@ -898,23 +902,23 @@ Subnetting and CIDR are essential tools for network efficiency, segmentation, an
 
 #### How proxy servers enhance security
 
-- The proxy server uses a public IP address different from the private network, hiding the network's real IP from malicious actors.
-- When a client receives an HTTPS response, the IP address shown is that of the proxy server, not the organization's actual web server.
-- Proxy servers can block access to unsafe or restricted websites.
-- They use temporary memory (cache) to store frequently requested data, reducing direct contact with internal servers and improving security.
+-   The proxy server uses a public IP address different from the private network, hiding the network's real IP from malicious actors.
+-   When a client receives an HTTPS response, the IP address shown is that of the proxy server, not the organization's actual web server.
+-   Proxy servers can block access to unsafe or restricted websites.
+-   They use temporary memory (cache) to store frequently requested data, reducing direct contact with internal servers and improving security.
 
 #### Types of proxy servers
 
-- **Forward proxy server:**  
-  Regulates and restricts outgoing requests from users to the internet.  
-  Hides the user's IP address and approves outgoing traffic before forwarding it.
+-   **Forward proxy server:**  
+    Regulates and restricts outgoing requests from users to the internet.  
+    Hides the user's IP address and approves outgoing traffic before forwarding it.
 
-- **Reverse proxy server:**  
-  Regulates and restricts incoming requests from the internet to internal servers.  
-  Accepts external traffic, approves it, and forwards it to internal servers, protecting server IP addresses.
+-   **Reverse proxy server:**  
+    Regulates and restricts incoming requests from the internet to internal servers.  
+    Accepts external traffic, approves it, and forwards it to internal servers, protecting server IP addresses.
 
-- **Email proxy server:**  
-  Filters spam by verifying sender addresses, reducing phishing risks and impersonation attacks.
+-   **Email proxy server:**  
+    Filters spam by verifying sender addresses, reducing phishing risks and impersonation attacks.
 
 ---
 
@@ -924,14 +928,14 @@ Proxy servers are important tools for security analysts, helping monitor, filter
 
 #### Remote access and site-to-site VPNs
 
-- **Remote access VPNs:**  
-  Used by individual users to connect a personal device to a VPN server over the internet.  
-  Encrypts data sent or received through the device.
+-   **Remote access VPNs:**  
+    Used by individual users to connect a personal device to a VPN server over the internet.  
+    Encrypts data sent or received through the device.
 
-- **Site-to-site VPNs:**  
-  Used by organizations to connect multiple networks or offices across different locations.  
-  IPSec is commonly used to create an encrypted tunnel between the primary and remote networks.  
-  Site-to-site VPNs are more complex to configure and manage than remote access VPNs.
+-   **Site-to-site VPNs:**  
+    Used by organizations to connect multiple networks or offices across different locations.  
+    IPSec is commonly used to create an encrypted tunnel between the primary and remote networks.  
+    Site-to-site VPNs are more complex to configure and manage than remote access VPNs.
 
 ---
 
@@ -939,19 +943,521 @@ Proxy servers are important tools for security analysts, helping monitor, filter
 
 **WireGuard** and **IPSec** are two VPN protocols used to encrypt traffic over secure network tunnels. VPN providers often offer both options, and the choice depends on speed, compatibility, and specific needs.
 
-- **WireGuard VPN:**
-    - High-speed protocol with advanced encryption.
-    - Simple to set up and maintain.
-    - Suitable for both site-to-site and client-server connections.
-    - Open source and uses fewer lines of code, resulting in faster download speeds.
-    - Ideal for streaming and large file downloads.
+-   **WireGuard VPN:**
 
-- **IPSec VPN:**
-    - Older protocol, widely supported and extensively tested.
-    - Used to encrypt and authenticate data packets for secure connections.
-    - Supported by most operating systems.
-    - More complex to configure than WireGuard.
-    - Preferred for its long history and security reliability.
+    -   High-speed protocol with advanced encryption.
+    -   Simple to set up and maintain.
+    -   Suitable for both site-to-site and client-server connections.
+    -   Open source and uses fewer lines of code, resulting in faster download speeds.
+    -   Ideal for streaming and large file downloads.
+
+-   **IPSec VPN:**
+    -   Older protocol, widely supported and extensively tested.
+    -   Used to encrypt and authenticate data packets for secure connections.
+    -   Supported by most operating systems.
+    -   More complex to configure than WireGuard.
+    -   Preferred for its long history and security reliability.
 
 **Summary:**  
 WireGuard is newer, faster, and simpler, while IPSec is older, more complex, and widely adopted. Both can be used for site-to-site and remote access VPNs, but the choice depends on performance needs and compatibility.
+
+## Module 3
+
+### The case for securing networks
+
+Attackers can infiltrate networks using methods such as malware, spoofing, or packet sniffing. Network operations can also be disrupted by attacks like packet flooding. Protecting a network from these types of attacks is critical because even a single incident can have catastrophic consequences for an organization.
+
+#### Potential impacts of network attacks:
+
+-   **Data breaches:**  
+    Leaking valuable or confidential information.
+
+-   **Reputational damage:**  
+    Loss of customer trust and negative impact on customer retention.
+
+-   **Financial loss:**  
+    Costs associated with mitigating attacks, recovering from incidents, and potential legal liabilities.
+
+#### Real-world example:
+
+In 2014, the American home-improvement chain Home Depot suffered a major cyber attack. Hackers compromised and infected Home Depot servers with malware. By the time network administrators detected and shut down the attack, the hackers had already stolen credit and debit card information for over 56 million customers.
+
+---
+
+**Summary:**  
+Securing networks is essential to protect sensitive data, maintain organizational reputation, and avoid costly disruptions. Effective network security measures help prevent, detect, and respond to a wide range of cyber
+
+### How intrusions compromise your system
+
+Attackers may target an organization's network for financial, personal, or political reasons, or even due to insider threats like disgruntled employees or activists. Security analysts must remain vigilant to potential vulnerabilities and respond quickly to mitigate risks.
+
+#### Network interception attacks
+
+Network interception attacks involve intercepting network traffic to steal information or interfere with transmissions.
+
+-   **Packet sniffing:**  
+    Malicious actors use hardware or software tools to capture and inspect data in transit. They can view sensitive information or alter network traffic, such as inserting malicious code or changing transaction details (e.g., redirecting a bank transfer).
+
+-   **Other interception attacks:**
+    -   **On-path attacks:** Attackers position themselves between communicating parties to intercept or modify messages.
+    -   **Replay attacks:** Attackers capture and resend valid data transmissions to trick systems or gain unauthorized access.
+
+#### Backdoor attacks
+
+A **backdoor attack** exploits weaknesses intentionally or unintentionally left in systems, bypassing normal access controls.
+
+-   Backdoors may be created by developers for troubleshooting or by attackers after compromising a system.
+-   Attackers use backdoors to maintain persistent access, install malware, perform denial of service (DoS) attacks, steal data, or weaken security settings.
+
+#### Possible impacts on an organization
+
+-   **Financial:**  
+    DoS attacks or other intrusions can halt business operations, resulting in lost revenue, costly repairs, and potential legal settlements if customer data is exposed.
+
+-   **Reputation:**  
+    Public knowledge of a cyber attack can erode trust, causing customers to leave for competitors.
+
+-   **Public safety:**  
+    Attacks on government or critical infrastructure (e.g., power grids, water systems, defense communications) can endanger public welfare and safety.
+
+---
+
+**Summary:**  
+Intrusions can compromise systems through interception or backdoor attacks, leading to financial loss, reputational damage, and even risks to public safety. Security analysts must be proactive in identifying and mitigating these threats.
+
+### Denial of Service (DoS) Attacks
+
+A **denial of service (DoS) attack** targets a network or server by flooding it with excessive network traffic. The objective is to disrupt normal business operations by overloading the organization's network, causing devices to crash or become unresponsive to legitimate users. This can result in downtime, financial loss, and increased vulnerability to other attacks.
+
+#### Types of DoS Attacks
+
+-   **Distributed Denial of Service (DDoS):**
+
+    -   A DDoS attack uses multiple devices or servers from different locations to flood the target network with unwanted traffic.
+    -   The use of numerous devices increases the likelihood of overwhelming the target server.
+
+-   **Network-Level DoS Attacks:**
+    -   Attackers may overload any part of the network, not just the main server. Even a carefully crafted packet can cause a device, like a router, to spend extra time processing, leading to a denial of service.
+
+#### Common Network-Level DoS Attacks
+
+1. **SYN Flood Attack:**
+
+    - Exploits the TCP handshake process.
+    - The attacker sends a large number of SYN (synchronize) requests to a server.
+    - The server responds with SYN/ACK packets and leaves ports open, waiting for the final ACK.
+    - If the number of SYN requests exceeds available ports, the server becomes overwhelmed and unable to function.
+
+2. **ICMP Flood Attack:**
+
+    - ICMP (Internet Control Message Protocol) is used for error reporting and status updates.
+    - The attacker sends repeated ICMP packets (such as "ping" requests) to a server.
+    - The server is forced to respond, consuming bandwidth and resources until it crashes.
+
+3. **Ping of Death:**
+    - The attacker sends an oversized ICMP packet (larger than 64 KB, the maximum allowed).
+    - The oversized packet can overload and crash the target system.
+    - Analogy: Like dropping a large rock on an anthill, overwhelming the system with a single, massive request.
+
+---
+
+**Summary:**  
+DoS and DDoS attacks exploit network protocols and overwhelm systems, causing service outages and potential security risks. Security analysts must be able to recognize and respond to these attacks to maintain network availability and integrity.
+
+### Read tcpdump logs
+
+A **network protocol analyzer** (packet sniffer or packet analyzer) is a tool used to capture and analyze data traffic within a network. These tools help monitor networks, identify suspicious activity, and investigate security incidents. Common analyzers include SolarWinds NetFlow Traffic Analyzer, ManageEngine OpManager, Azure Network Watcher, Wireshark, and **tcpdump**.
+
+#### tcpdump
+
+-   **tcpdump** is a command-line network protocol analyzer.
+-   Lightweight, open-source, and uses the libpcap library.
+-   Runs in the terminal and is preinstalled on many Linux distributions (also available for macOS and other Unix-based systems).
+-   Provides brief packet analysis and prints key information about network traffic in a human-readable format.
+
+#### Interpreting tcpdump output
+
+tcpdump prints each captured packet to the terminal (or a log file), showing:
+
+-   **Timestamp:** When the packet was captured (hours:minutes:seconds.fractions).
+-   **Source IP:** The origin of the packet.
+-   **Source port:** The originating port number.
+-   **Destination IP:** Where the packet is being sent.
+-   **Destination port:** The target port number.
+
+> Note: By default, tcpdump tries to resolve host addresses to hostnames and port numbers to common service names.
+
+![tcpdump](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/B-PaECh0ToSFgBWpFczYZg_4896abe8c06443f08eec4dc003dcf8f1_image.png?expiry=1753401600000&hmac=1skoMrU8ne_A5lbRqVyPTfrpzgQYbOeztNm0SAAV3O0)
+
+#### Common uses
+
+-   Capture and view network communications.
+-   Troubleshoot network performance issues.
+-   Establish baselines for network traffic patterns and utilization.
+-   Detect and identify malicious traffic.
+-   Locate unauthorized IM traffic or wireless access points.
+
+**Security note:**  
+Attackers can also use protocol analyzers to capture sensitive data (e.g., usernames, passwords). As a cybersecurity analyst, understanding how to use and interpret tcpdump is essential for both defense and investigation.
+
+### Malicious Packet Sniffing
+
+**Packet sniffing** is the practice of using software tools to observe data as it moves across a network. As a security analyst, you may use packet sniffing to analyze and capture packets for incident investigation or debugging network issues. However, malicious actors can also use packet sniffing to intercept data not intended for them—similar to opening someone else's mail.
+
+#### How malicious packet sniffing works
+
+-   **Man-in-the-middle:**  
+    Attackers insert themselves between two devices in an authorized connection, using packet sniffing to spy on every data packet passing through.
+-   **Tools:**  
+    Attackers can use software applications or hardware devices to capture and inspect data packets.
+-   **Manipulation:**  
+    Malicious actors may alter the contents of data packets, such as changing a recipient's bank account number.
+
+#### Types of packet sniffing attacks
+
+-   **Passive packet sniffing:**  
+    Attackers read data packets in transit without altering them.  
+    _Analogy:_ Like a postal worker reading your mail while delivering it.
+
+-   **Active packet sniffing:**  
+    Attackers manipulate data packets in transit, such as redirecting them to unintended ports or changing their contents.  
+    _Analogy:_ Like a neighbor intercepting your mail, reading or changing it, and then delivering it to your mailbox.
+
+#### Preventing malicious packet sniffing
+
+-   **Use a VPN:**  
+    Encrypts and protects data as it travels across the network. Even if hackers intercept your traffic, they cannot decode the encrypted information.
+
+-   **Use HTTPS:**  
+    Ensure websites use HTTPS, which employs SSL/TLS encryption to prevent eavesdropping on network transmissions.
+
+-   **Avoid unprotected WiFi:**  
+    Public WiFi networks (e.g., in coffee shops, airports) often lack encryption, making all data visible to anyone on the network. Avoid using public WiFi unless you have a VPN installed.
+
+---
+
+By understanding how malicious packet sniffing works and implementing these protective measures, you can help secure network communications against interception and manipulation.
+
+### IP Spoofing
+
+**IP spoofing** is a network attack where an attacker changes the source IP address of a data packet to impersonate an authorized system and gain access to a network. The attacker pretends to be a trusted device to bypass firewall rules and communicate with the target computer.
+
+#### Common IP spoofing attacks
+
+-   **On-path attack:**  
+    The attacker places themselves between two communicating devices (e.g., a web browser and a web server), intercepting or altering data in transit. By sniffing packet information, they learn the IP and MAC addresses of the devices and can impersonate either one.
+
+-   **Replay attack:**  
+    The attacker intercepts a data packet in transit and delays or repeats it later. This can cause connection issues or allow the attacker to impersonate an authorized user by resending valid transmissions.
+
+-   **Smurf attack:**  
+    Combines DDoS and IP spoofing. The attacker sniffs an authorized user's IP address and floods it with packets, overwhelming the target and potentially bringing down a server or network.
+
+#### Protecting against IP spoofing
+
+-   **Encryption:**  
+    Always encrypt network traffic so intercepted data cannot be read by malicious actors.
+
+-   **Firewall configuration:**  
+    Firewalls can be set to reject incoming packets with a source IP address that matches the local network.
+    -   If a firewall receives a packet from the internet with a sender's IP address matching the private network, it should deny the transmission, since only local devices should have that address.
+
+**Tip:**  
+Create firewall rules to reject all incoming traffic with a source IP address that matches the local network, helping to prevent IP spoofing attacks.
+
+## Module 4
+
+### Security Hardening
+
+**Security hardening** is the process of strengthening a system to reduce its vulnerability and attack surface. The **attack surface** includes all the potential vulnerabilities that a threat actor could exploit—like all the doors and windows a robber could use to break into a house.
+
+Just as you would lock all entry points to secure your home, security hardening involves minimizing vulnerabilities and keeping a network as secure as possible.
+
+#### Key aspects of security hardening
+
+-   **Regular maintenance:**  
+    Security analysts perform regular maintenance to keep devices and systems secure and functioning optimally.
+
+-   **Scope:**  
+    Hardening can be applied to hardware, operating systems, applications, networks, databases, and even physical spaces (e.g., using cameras and security guards).
+
+-   **Common hardening procedures:**
+
+    -   **Software updates/patches:** Fix security vulnerabilities and improve security.
+    -   **Configuration changes:** Require longer or more frequent password changes, update encryption standards, disable unused applications/services/ports, and reduce access permissions.
+    -   **Physical security:** Secure physical spaces to prevent unauthorized access.
+
+-   **Minimizing attack surface:**  
+    Reducing the number of applications, devices, open ports, and permissions makes monitoring easier and decreases the risk of compromise.
+
+-   **Penetration testing:**  
+    Regular **penetration tests (pen tests)** simulate attacks to identify vulnerabilities in systems, networks, websites, applications, and processes. Findings are documented, and organizations use these reports to fix weaknesses and improve security.
+
+---
+
+Security hardening is an ongoing process that helps organizations proactively protect their assets and reduce the risk of successful attacks.
+
+### OS Hardening
+
+The **operating system (OS)** is the interface between computer hardware and the user, acting as an intermediary between software applications and hardware. Securing the OS is critical because a single insecure OS can compromise an entire network.
+
+#### OS Hardening Practices
+
+Some OS hardening tasks are performed regularly, while others are done as part of initial setup.
+
+**Regular OS hardening tasks:**
+
+-   **Patch installation (patch updates):**
+
+    -   Apply software and OS updates as soon as they are released to address security vulnerabilities.
+    -   Delaying patches leaves systems exposed, as attackers quickly exploit known vulnerabilities after patches are published.
+    -   Example: Emergency patching of a widely used programming library to fix a critical vulnerability.
+
+-   **Backups:**
+
+    -   Regularly back up system data to ensure recovery in case of compromise or failure.
+
+-   **Maintain device and user lists:**
+
+    -   Keep an up-to-date inventory of devices and authorized users to monitor and control access.
+
+-   **Hardware and software disposal:**
+    -   Properly wipe and dispose of old hardware.
+    -   Remove unused software applications to eliminate unnecessary vulnerabilities.
+
+**One-time or periodic OS hardening tasks:**
+
+-   **Baseline configuration:**
+
+    -   Establish a documented set of system specifications (baseline image) for future builds and updates.
+    -   Example: Baseline may include firewall rules and allowed/disallowed network ports.
+    -   Compare current configurations to the baseline to detect unauthorized changes.
+
+-   **Secure configuration settings:**
+
+    -   Configure device settings to use secure encryption standards.
+
+-   **Strong password policy:**
+
+    -   Require passwords to meet complexity requirements (e.g., minimum length, uppercase, number, symbol).
+    -   Lock accounts after a certain number of failed login attempts.
+
+-   **Multi-factor authentication (MFA):**
+    -   Require users to verify their identity in two or more ways (e.g., password, ID card, fingerprint).
+
+---
+
+By following these OS hardening practices, organizations can significantly reduce their attack surface and improve overall security.
+
+### Brute Force Attacks and OS Hardening
+
+#### Brute force attacks
+
+A **brute force attack** is a trial-and-error method used by attackers to discover private information, such as passwords. There are several types:
+
+-   **Simple brute force attacks:**  
+    Attackers try various combinations of usernames and passwords until they find the correct one.
+
+-   **Dictionary attacks:**  
+    Attackers use lists of commonly used passwords or previously stolen credentials to guess passwords. Originally, these lists were based on dictionary words, but now include more complex entries.
+
+Brute force attacks can be slow and tedious if done manually, so attackers often use automated tools to speed up the process.
+
+---
+
+#### Assessing vulnerabilities
+
+Before a brute force attack or other incident occurs, organizations can proactively test their systems for vulnerabilities:
+
+-   **Virtual machines (VMs):**  
+    Software-based computers that run in isolated environments. VMs allow analysts to test suspicious files or malware safely, as they can be reverted to a clean state or deleted after testing. However, some advanced malware can detect and evade VMs.
+
+-   **Sandbox environments:**  
+    Isolated testing environments (physical or virtual) used to execute and analyze software or files without risking the main network. Sandboxes are useful for testing patches, identifying bugs, and simulating attacks.
+
+---
+
+#### Prevention measures
+
+Organizations use several strategies to prevent brute force and similar attacks:
+
+-   **Salting and hashing:**  
+    Hashing converts passwords into unique, irreversible values. Salting adds random data to each password before hashing, making it harder for attackers to crack passwords using precomputed tables.
+
+-   **Multi-factor authentication (MFA) and two-factor authentication (2FA):**  
+    Require users to verify their identity in two or more ways (e.g., password + fingerprint or OTP). 2FA is a subset of MFA, using only two factors.
+
+-   **CAPTCHA and reCAPTCHA:**  
+    Tests that distinguish humans from bots, preventing automated brute force attempts.
+
+-   **Password policies:**  
+    Set rules for password complexity, update frequency, reuse restrictions, and login attempt limits to reduce the risk of successful brute force attacks.
+
+---
+
+By combining OS hardening practices with these prevention measures, organizations can significantly reduce their vulnerability to brute force and other attacks.
+
+### Network Hardening Practices
+
+**Network hardening** focuses on strengthening network-related security, such as port filtering, network access privileges, and encryption. Some tasks are performed regularly, while others are set up once and updated as needed.
+
+#### Regular network hardening tasks
+
+-   **Firewall rules maintenance:**  
+    Regularly review and update firewall rules to ensure only necessary ports and services are accessible.
+
+-   **Network log analysis:**  
+    Examine network logs to identify suspicious events or anomalies.
+
+    -   Use log analyzer tools or Security Information and Event Management (SIEM) tools.
+    -   SIEM tools collect and analyze log data, presenting it on a single dashboard (single pane of glass) for easy monitoring.
+    -   SIEM reports help prioritize vulnerabilities and guide mitigation efforts.
+
+-   **Patch updates:**  
+    Apply updates to network devices and software to fix vulnerabilities.
+
+-   **Server backups:**  
+    Regularly back up server data to ensure recovery in case of an incident.
+
+---
+
+#### One-time or periodic network hardening tasks
+
+-   **Port filtering:**  
+    Configure firewalls to block or allow specific port numbers, limiting unwanted communication.
+
+    -   Only allow ports required for normal operations; block all others to reduce attack surface.
+
+-   **Network access privileges:**  
+    Restrict access so users can only reach the parts of the network necessary for their roles.
+
+-   **Encryption:**  
+    Use the latest encryption standards to protect network communications.
+
+    -   Data in restricted zones should have higher encryption standards for added protection.
+
+-   **Wireless protocol management:**  
+    Use up-to-date wireless protocols and disable older, less secure ones.
+
+-   **Network segmentation:**  
+    Divide the network into isolated subnets (e.g., by department or security zone) to contain issues and limit access to sensitive data.
+
+---
+
+By combining regular monitoring and maintenance with strong initial configurations, network hardening reduces vulnerabilities and helps protect organizational assets from threats.
+
+### Network Security Applications
+
+![firewall-ids-ips](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/4ENRXSswQSOsOrKt9KyG6A_06fe04a8d10846ba811fe89a969642f1_CS_R-055_Firewall-IDS-and-IPS.png?expiry=1753401600000&hmac=-wAnzkvvw1GF7DrBx4n-bj8v2qfo9PjaRqbygppgmC0)
+
+#### Firewall
+
+Firewalls are security devices or software that allow or block network traffic based on a set of rules. They inspect packet headers and allow or deny traffic based on port numbers and other criteria. Next-generation firewalls (NGFWs) can also inspect packet payloads for deeper analysis. Every system should have its own firewall, even if a network firewall is present.
+
+#### Intrusion Detection System (IDS)
+
+An IDS is an application that monitors system activity and alerts administrators to possible intrusions. It detects known attack signatures and anomalies by sniffing data packets as they move across the network. When suspicious activity is detected, the IDS sends an alert for further investigation. However, IDS systems only alert—they do not block or stop malicious traffic.
+
+-   **Limitation:** IDS can only detect known attacks or obvious anomalies and cannot stop incoming threats.
+
+#### Intrusion Prevention System (IPS)
+
+An IPS monitors system activity for intrusions and anomalies and takes action to stop them. It searches for attack signatures and data anomalies, reporting them to analysts and blocking or dropping suspicious packets. The IPS sits behind the firewall and can disrupt risky data streams before they reach sensitive parts of the network.
+
+-   **Limitation:** IPS is inline—if it fails, the connection between the private network and the internet breaks. It may also block legitimate traffic due to false positives.
+
+#### Full Packet Capture Devices
+
+These devices record and analyze all data transmitted over the network. They are useful for investigating IDS alerts and conducting in-depth network analysis.
+
+#### Security Information and Event Management (SIEM)
+
+A SIEM tool collects and analyzes log data from multiple network sources (IDS, IPS, firewalls, VPNs, proxies, DNS logs) and presents it in a centralized dashboard (single pane of glass). SIEM tools help security analysts monitor, investigate, and prioritize security events in real time, but do not take direct action to stop threats.
+
+-   **Examples:** Google Chronicle, Splunk Enterprise, Splunk Cloud
+
+#### Key Takeaways
+
+| Devices / Tools | Advantages                                                              | Disadvantages                                                                                        |
+| --------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Firewall**    | Allows or blocks traffic based on rules                                 | Only filters packets based on header info; can't inspect payloads (unless NGFW)                      |
+| **IDS**         | Detects and alerts on possible intrusions and attacks                   | Only detects known attacks or obvious anomalies; does not stop incoming traffic                      |
+| **IPS**         | Monitors for intrusions and anomalies and takes action to stop them     | Inline device—if it fails, network connection breaks; may block legitimate traffic (false positives) |
+| **SIEM**        | Aggregates and analyzes log data from multiple sources in one dashboard | Only reports on possible issues; does not take action to stop or prevent suspicious events           |
+
+Each tool has costs for purchase, installation, and maintenance. Organizations may need additional personnel to monitor these tools, especially SIEMs. Security decisions should balance cost and risk to determine the appropriate level of protection.
+
+### Network Security in the Cloud
+
+As organizations increasingly use cloud network services, security analysts must secure both on-premises and cloud networks. A **cloud network** is a collection of servers or computers in a remote data center, accessible via the internet, that hosts company data and applications. Cloud computing provides on-demand storage, processing power, and analytics.
+
+#### Key considerations for cloud network security:
+
+-   **Security hardening:**  
+    Cloud servers require regular maintenance and security hardening, just like traditional servers. This includes patching, configuration management, and monitoring.
+
+-   **Server baseline images:**  
+    Cloud environments often use a baseline image for all server instances. Comparing current server states to the baseline helps detect unverified changes, which could indicate an intrusion.
+
+-   **Separation of data and applications:**  
+    Data and applications should be segmented by service category. For example, keep older applications separate from newer ones, and separate internal software from front-end applications accessed by users.
+
+-   **Shared responsibility model:**  
+    While cloud service providers manage the infrastructure, organizations are responsible for securing their own data, applications, and access controls within the cloud.
+
+-   **Cloud-specific security measures:**  
+    Organizations must implement access controls, encryption, network segmentation, and regular monitoring in the cloud, just as they would for traditional networks.
+
+---
+
+**Summary:**  
+Cloud networks require the same level of security attention as on-premises networks. Security analysts must apply hardening, monitoring, and segmentation practices, and understand the shared responsibility model to keep cloud operations secure.
+
+### Cryptography and Cloud Security
+
+#### Cloud Security Hardening
+
+Securing cloud infrastructure involves a combination of tools and techniques. Key strategies include:
+
+-   **Identity Access Management (IAM):**  
+    IAM systems manage digital identities and control how users access cloud resources. They help enforce policies for authentication and authorization.
+
+-   **Hypervisors:**  
+    Hypervisors separate hardware from operating systems, enabling virtualization.
+
+    -   **Type 1 hypervisors** run directly on hardware (e.g., VMware ESXi) and are commonly used by cloud providers.
+    -   **Type 2 hypervisors** run on top of a host OS (e.g., VirtualBox).  
+        Cloud providers manage hypervisors and keep them updated. Vulnerabilities or misconfigurations can lead to VM escapes, where attackers gain access to the host or other VMs.
+
+-   **Baselining:**  
+    Establishing a baseline means setting a secure, reference configuration for the cloud environment. This helps detect unauthorized changes. Examples include restricting admin portal access, enabling password management, file encryption, and threat detection.
+
+#### Cryptography in the Cloud
+
+-   **Encryption:**  
+    Encryption transforms data into unreadable ciphertext, protecting it from unauthorized access. Modern encryption relies on secure key management rather than secret algorithms. Encryption is essential for protecting data at rest and in transit in the cloud.
+
+-   **Cryptographic Erasure (Crypto-shredding):**  
+    Instead of deleting data directly, cryptographic erasure destroys the encryption keys. Without the key, the encrypted data becomes inaccessible and undecipherable. All copies of the key must be destroyed to ensure data cannot be recovered.
+
+#### Key Management
+
+-   **Trusted Platform Module (TPM):**  
+    A hardware chip that securely stores passwords, certificates, and encryption keys.
+
+-   **Cloud Hardware Security Module (CloudHSM):**  
+    A dedicated device for securely storing cryptographic keys and performing encryption/decryption operations.
+
+Cloud customers usually do not have direct access to the provider’s encryption keys but can often supply their own keys for added control. If customers manage their own keys, they are responsible for keeping them secure. Cloud providers may offer audit reports and security certifications (such as FEDRAMP for federal contractors) to help organizations assess provider security.
+
+**Shared Responsibility Model:**  
+Cloud providers manage the infrastructure and some security controls, but customers are responsible for securing their own data, applications, and (if applicable) encryption keys.
+
+---
+
+**Key Takeaway:**  
+Combining IAM, secure virtualization, baselining, strong cryptography, and robust key management is essential for protecting cloud resources and data.
+
+# Certificate Completed
+
+![Certificate proof in case I have to pay for it](image.png)
