@@ -235,3 +235,138 @@ If you need to move hundreds of JPEG files from one folder to another:
 
 **Key Point:**  
 GUIs are user-friendly and great for everyday tasks, while CLIs offer more power and efficiency for complex or repetitive operations.
+
+## Module 2
+
+### Introduction to Linux
+
+Linux is an **open-source operating system** that originated in the early 1990s. It was created by combining two major projects:
+- **The Linux kernel** by Linus Torvalds, inspired by UNIX and designed to be open and accessible.
+- **The GNU project** by Richard Stallman, which aimed to create free software for everyone.
+
+By combining the GNU tools and the Linux kernel, a fully functional operating system was born. Linux is licensed under the GNU Public License, which means anyone can use, modify, and share it freely. This open philosophy has led to a large, active community and the creation of over 600 different Linux distributions (or "distros").
+
+Linux is widely used in IT and cybersecurity. As a security analyst, you’ll often use Linux to:
+- Examine system logs to investigate issues
+- Manage access and authorization
+- Run a variety of security tools
+
+**Key Point:**  
+Linux’s flexibility, strong community, and open-source nature make it a core part of modern computing and security work.
+
+### Linux Architecture
+
+The architecture of Linux is made up of several main components that work together to run the system:
+
+- **User:**
+    - The person interacting with the computer.
+    - Linux supports multiple users at the same time (multi-user system), allowing several people to use the same resources simultaneously.
+- **Applications:**
+    - Programs that perform specific tasks, like text editors (e.g., Nano), web browsers, or calculators.
+    - Applications are often installed using package managers—a tool that helps you install, manage, and remove software packages.
+- **Shell:**
+    - The command-line interface (CLI) that lets users communicate with the system by typing commands.
+    - Acts as a translator between you and the computer, passing your commands to the kernel and displaying the results.
+- **Filesystem Hierarchy Standard (FHS):**
+    - The way Linux organizes files and directories, like a digital filing cabinet, so data can be easily found and managed.
+    - Directories (also called folders) can contain files or other directories.
+    - The FHS defines where different types of data are stored in the system.
+- **Kernel:**
+    - The core of the operating system.
+    - Manages memory, processes, and communicates with the hardware using drivers.
+    - Responsible for allocating resources and routing commands from applications, ensuring the system runs efficiently.
+- **Hardware:**
+    - The physical components of the computer.
+    - **Internal hardware:**
+        - **Motherboard:** The main circuit board connecting all components.
+        - **CPU (Central Processing Unit):** Executes instructions from programs and performs general computing tasks.
+        - **RAM (Random Access Memory):** Provides short-term memory for active tasks; data in RAM is lost when the computer is turned off.
+        - **Hard Drive:** Stores programs and files for long-term access, even after the computer is powered down.
+    - **Peripheral devices:**
+        - Hardware that can be added or removed, such as monitors, printers, keyboards, and mice.
+
+### Linux Distributions
+
+Linux is highly customizable, and there are many different versions available—these are called distributions (or distros/flavors). Each distribution includes the Linux kernel, utilities, a package management system, and an installer. Understanding your distribution is important because it determines what tools and apps are available to you.
+
+- **Distributions (distros):** Different versions of Linux, each with its own set of tools, preinstalled programs, and user interface.
+- **Analogy:** The Linux kernel is like an engine, and distributions are like different types of vehicles built around that engine (cars, trucks, buses, airplanes, etc.), each serving different purposes.
+- **Customization:** Because the kernel is open source, anyone can modify it to create a new distribution tailored to specific needs or preferences.
+- **Parent distributions:** Some distros are "parents" to others. For example:
+    - **Red Hat®** is the parent of CentOS.
+    - **Slackware®** is the parent of SUSE®.
+    - **Debian** is the parent of Ubuntu and Kali Linux™.
+- **Choice:** Users often pick a distro based on their needs (e.g., security, stability, user interface) or personal preference—just like choosing a type of vehicle.
+
+### Kali Linux
+
+Kali Linux™ is a Debian-based distribution developed by Offensive Security, designed specifically for penetration testing and digital forensics. It comes with many pre-installed security tools.
+
+- **Purpose:** Built for penetration testing (simulated attacks to find vulnerabilities) and digital forensics (analyzing data after incidents).
+- **Best practice:** Always use Kali Linux in a virtual machine to avoid damaging your main system and to easily revert to previous states.
+- **Pre-installed tools:**
+    - **Metasploit:** Finds and exploits vulnerabilities.
+    - **Burp Suite:** Tests web applications for weaknesses.
+    - **John the Ripper:** Password cracking tool.
+    - **tcpdump:** Command-line packet analyzer for capturing network traffic.
+    - **Wireshark:** GUI tool for analyzing live or captured network traffic.
+    - **Autopsy:** Forensic tool for analyzing hard drives and smartphones.
+- **Use in security:** Popular among security professionals for both pen testing and forensic investigations due to its wide range of included tools.
+
+### More Linux Distributions
+
+- **Ubuntu:**
+    - Open-source, user-friendly, and widely used in security and other industries.
+    - Offers both CLI and GUI.
+    - Debian-derived; comes with common applications and access to many more via package manager.
+    - Large community support and resources.
+    - Popular for cloud computing and often used in cloud-based cybersecurity work.
+- **Parrot:**
+    - Open-source, Debian-based, and focused on security.
+    - Comes with pre-installed tools for penetration testing and digital forensics.
+    - User-friendly with both GUI and CLI.
+- **Red Hat® Enterprise Linux®:**
+    - Subscription-based, built for enterprise use.
+    - Not free; includes dedicated support for customers.
+- **AlmaLinux:**
+    - Community-driven, designed as a stable replacement for CentOS.
+    - Drop-in compatible with CentOS 8, ensuring continued support for existing applications and configurations.
+
+### Package Managers for Installing Applications
+
+- **Package:** A piece of software that can be combined with others to form an application. Packages include all necessary files and dependencies (supplemental files needed to run the application).
+- **Package manager:** A tool that helps users install, manage, and remove packages or applications. It also resolves dependency issues and keeps software up to date.
+    - Always use the most recent version of a package for security and bug fixes.
+- **Types of package managers:**
+    - Different distributions use different package managers, often based on their parent distro.
+    - **Debian-derived distros** (e.g., Kali Linux™, Ubuntu, Parrot): use package managers like **dpkg** (.deb files).
+    - **Red Hat-derived distros** (e.g., CentOS): use **RPM** (.rpm files).
+- **Package management tools:**
+    - Tools that make it easier to manage packages from the shell.
+    - **APT (Advanced Package Tool):** Used with Debian-based distros to manage, search, and install packages from the CLI.
+    - **YUM (Yellowdog Updater Modified):** Used with Red Hat-based distros to manage, search, and install .rpm packages from the CLI.
+
+### Introduction to the Shell
+
+- The shell is the command-line interpreter that lets you communicate with the operating system through text commands.
+- Provides the command-line interface (CLI) for interacting with the OS.
+- Commands are instructions you enter to tell the computer what to do; the shell passes these to the kernel for execution.
+- Acts as a language interpreter between you and your system, since humans don’t speak computer language or binary.
+- While the OS can run without the shell, the shell is essential for users to access system features, run applications, and automate tasks.
+- Allows you to combine commands and connect applications, making complex and automated operations possible.
+
+### Input and Output in the Shell
+
+- **Standard input (stdin):** Information entered by the user via the keyboard into the shell (e.g., typing a command).
+    - Analogy: Like asking your friend a question in a conversation.
+- **Standard output (stdout):** The result or response returned by the OS through the shell after executing a command.
+    - Example: Typing `echo hello` and pressing enter returns `hello` as output.
+    - Analogy: Like your friend answering your question.
+- **Standard error (stderr):** Error messages returned by the OS through the shell when a command fails or is invalid.
+    - Example: Typing `eco hello` (misspelling `echo`) returns an error message.
+    - Analogy: Like your friend saying they can't answer your question.
+- Communication with the shell involves:
+    - Input (command from user)
+    - Output (system response)
+    - Error (system can't process the command)
+
