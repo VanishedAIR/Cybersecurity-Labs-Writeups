@@ -636,3 +636,326 @@ Kali Linux™ is a Debian-based distribution developed by Offensive Security, de
 - Use sudo responsibly—only grant elevated privileges when necessary.
 - Always double-check commands before running as root or with sudo to avoid accidental changes or deletions.
 - Consider deactivating accounts instead of deleting them to preserve data and track ownership.
+
+## Module 4
+
+### Introduction to Databases
+
+#### What is a Database?
+- An organized collection of information or data.
+- Similar to a spreadsheet, but designed for multiple users and large amounts of data.
+- Can perform complex tasks and allow simultaneous access by many users.
+- Commonly used by security analysts to store and access information (e.g., login attempts, software updates, machine ownership).
+
+#### Relational Databases
+- A structured type of database made up of related tables.
+- Each table contains:
+    - **Fields (columns):** Categories of information (e.g., employee_id, device_id, username).
+    - **Records (rows):** Individual entries with data for each field.
+- Multiple tables can be related to each other using keys.
+
+#### Keys
+- **Primary key:**
+    - A column where every row has a unique, non-empty value.
+    - Uniquely identifies each record in a table (e.g., employee_id in an employees table).
+    - Only one primary key per table.
+- **Foreign key:**
+    - A column in one table that is a primary key in another table.
+    - Used to connect tables together.
+    - Can have duplicates and empty values.
+    - A table can have multiple foreign keys.
+
+#### Example
+- Employees table: employee_id (primary key), username, department
+- Machines table: device_id (primary key), employee_id (foreign key)
+- The employee_id column links the machines to their assigned employees.
+
+### Query Databases with SQL
+
+#### What is SQL?
+- SQL (Structured Query Language) is a programming language for creating, interacting with, and requesting information from databases.
+- Used by nearly all relational databases (with minor differences between versions).
+
+#### What is a Query?
+- A query is a request for data from a database table or a combination of tables.
+- SQL queries allow you to extract specific information quickly, even from very large datasets.
+
+#### SQL in Security Work
+- Security analysts use SQL to retrieve and analyze logs (records of events in systems).
+    - Examples of logs: machine configurations, website visitors, user activity.
+- SQL helps:
+    - Find machines that aren't configured properly.
+    - Detect unusual patterns or potential malicious activity.
+    - Identify machines missing security patches.
+    - Determine optimal times for updates based on usage patterns.
+- SQL is also widely used for basic data analytics, supporting security decisions and investigations.
+
+### SQL Filtering vs Linux Filtering
+
+#### Accessing SQL
+- Many interfaces and versions of SQL exist; one way to access SQL is through the Linux command line.
+    - Example: Enter `sqlite3` in the terminal to access SQLite.
+    - After launching, commands entered are interpreted as SQL, not Linux commands.
+
+#### Differences Between Linux and SQL Filtering
+
+- **Purpose:**
+    - Linux: Filters data in files and directories (e.g., searching files, managing permissions, handling processes).
+    - SQL: Filters data within a database (querying/manipulating tables, retrieving specific information).
+
+- **Syntax:**
+    - Linux: Uses various commands and options (e.g., `find`, `sed`, `cut`, `grep`). Syntax varies by tool.
+    - SQL: Uses standardized keywords and clauses (e.g., `SELECT`, `WHERE`, `JOIN`).
+
+- **Structure:**
+    - SQL: Highly structured—data is organized in tables with columns and rows, making it easy to select and analyze specific fields.
+    - Linux: More free-form—data is often printed as lines of text, less organized for column-based analysis.
+
+- **Joining Tables:**
+    - SQL: Can join multiple tables to combine related data for analysis.
+    - Linux: Cannot join data from different files in the same way; more limited for complex relationships.
+
+- **Best Uses:**
+    - SQL: Best for structured data stored in databases, especially when you need to join tables or analyze specific columns.
+    - Linux: Best for filtering and searching unstructured data in text files or logs that are not in a database format.
+    - Security analysts should know both methods, as some data will be in databases (use SQL) and some in text files (use Linux tools).
+
+### Basic SQL Queries
+
+#### SELECT and FROM
+- `SELECT` specifies which columns to return.
+- `FROM` specifies which table to query.
+- Syntax is similar to natural language (e.g., "select apples and bananas from the box").
+
+#### Selecting Specific Columns
+- To return specific columns:
+    - Example: `SELECT employee_id, device_id FROM employees;`
+    - Returns only the employee_id and device_id columns from the employees table.
+    - Columns are separated by commas.
+
+#### Selecting All Columns
+- Use an asterisk (`*`) to select all columns:
+    - Example: `SELECT * FROM employees;`
+    - Returns all columns from the employees table.
+
+#### Syntax Tips
+- SQL keywords are not case-sensitive, but are often written in uppercase for readability.
+- End each SQL statement with a semicolon (`;`).
+
+### Query a Database: ORDER BY
+
+- `ORDER BY` sequences the records returned by a query based on specified column(s).
+- Can sort in ascending (default) or descending order.
+
+#### Sorting in Ascending Order
+- By default, `ORDER BY` sorts numbers from smallest to largest and text from A to Z.
+- Example:
+```sql
+SELECT customerid, city, country
+FROM customers
+ORDER BY city;
+```
+
+#### Sorting in Descending Order
+- Use `DESC` to sort in descending order (numbers: largest to smallest, text: Z to A).
+- Example:
+```sql
+SELECT customerid, city, country
+FROM customers
+ORDER BY city DESC;
+```
+
+#### Sorting Based on Multiple Columns
+- You can specify more than one column; SQL sorts by the first, then by the next for ties.
+- Example:
+```sql
+SELECT customerid, city, country
+FROM customers
+ORDER BY country, city;
+```
+
+### Basic Filters on SQL Queries
+
+#### Filtering with WHERE
+- Filtering selects only data that matches a certain condition.
+- Use the `WHERE` clause to specify the filter condition in a SQL query.
+- Example: Return all records from the log_in_attempts table where country is USA:
+```sql
+SELECT * FROM log_in_attempts
+WHERE country = 'USA';
+```
+
+#### Using Operators
+- Operators define the condition for filtering (e.g., `=`, `>`, `<`, `LIKE`).
+- Example: `country = 'USA'` returns records where the country column is exactly USA.
+
+#### Pattern Matching with LIKE
+- Use `LIKE` with `WHERE` to filter for patterns (not just exact matches).
+- `%` is a wildcard for any number of characters.
+- Example: Return all offices that start with 'East':
+```sql
+SELECT * FROM employees
+WHERE office LIKE 'East%';
+```
+- Example: Return all log-in attempts where country starts with 'US' (matches both US and USA):
+```sql
+SELECT * FROM log_in_attempts
+WHERE country LIKE 'US%';
+```
+
+#### Wildcards
+- Wildcards are special characters used in pattern matching with SQL's `LIKE` operator.
+    - `%` substitutes for any number of characters.
+    - `_` substitutes for exactly one character.
+- Wildcards can be placed before, after, or around a string to match different patterns.
+
+| Pattern  | Results that could be returned      |
+|----------|-------------------------------------|
+| 'a%'     | apple123, art, a                    |
+| 'a_'     | as, an, a7                          |
+| 'a__'    | ant, add, a1c                       |
+| '%a'     | pizza, Z6ra, a                      |
+| '_a'     | ma, 1a, Ha                          |
+| '%a%'    | Again, back, a                      |
+| '_ a _'    | Car, ban, ea7                       |
+
+### Filter Dates and Numbers
+
+#### Common Data Types
+- **String:** Ordered sequence of characters (letters, numbers, symbols). Example: username 'analyst10'.
+- **Numeric:** Numbers that can be used in mathematical operations. Example: count of log-in attempts.
+- **Date and Time:** Represents dates and/or times. Example: patch dates, log-in timestamps.
+
+#### Comparison Operators
+- Used to filter numeric and date/time data.
+    - `=` : equals
+    - `<>` or `!=` : not equal to
+    - `>` : greater than (later than, for dates/times)
+    - `<` : less than (earlier than, for dates/times)
+    - `>=` : greater than or equal to
+    - `<=` : less than or equal to
+
+- Example: Find log-in attempts after 6 pm (18:00):
+```sql
+SELECT * FROM log_in_attempts
+WHERE time > '18:00';
+```
+
+#### BETWEEN Operator
+- Filters for values within a range (numbers or dates).
+- Example: Find all patches installed between March 1st, 2021 and September 1st, 2021:
+```sql
+SELECT * FROM machines
+WHERE OS_patch_date BETWEEN '2021-03-01' AND '2021-09-01';
+```
+
+### Filters with AND, OR, and NOT
+
+#### AND Operator
+- Used to combine multiple conditions that must all be true.
+- Example: Select machines with both OS 1 and Email Client 1:
+```sql
+SELECT * FROM machines
+WHERE operating_system = 'OS 1' AND email_client = 'Email Client 1';
+```
+
+#### OR Operator
+- Used to combine conditions where at least one must be true.
+- Example: Select machines with OS 1 or OS 3:
+```sql
+SELECT * FROM machines
+WHERE operating_system = 'OS 1' OR operating_system = 'OS 3';
+```
+
+#### NOT Operator
+- Used to exclude records that match a condition.
+- Example: Select all machines that are NOT running OS 3:
+```sql
+SELECT * FROM machines
+WHERE NOT operating_system = 'OS 3';
+```
+
+### Join Tables in SQL
+
+#### Table and Column Reference Syntax
+- When working with multiple tables, specify the table and column as `table.column` (e.g., `employees.employee_id`).
+- This clarifies which table's column is being referenced, especially when columns have the same name in both tables.
+
+#### INNER JOIN
+- An `INNER JOIN` returns rows where there is a match on a specified column in both tables.
+- Typically, a primary key in one table is matched to a foreign key in another.
+- Example: Join employees and machines tables on employee_id to get usernames, office locations, and operating systems:
+```sql
+SELECT employees.username, employees.office, machines.operating_system
+FROM employees
+INNER JOIN machines
+    ON employees.employee_id = machines.employee_id;
+```
+- The result includes only rows where employee_id exists in both tables.
+
+#### NULL Values
+- `NULL` represents missing values (e.g., machines not assigned to any employee).
+- INNER JOIN will exclude rows where there is no match (i.e., where employee_id is NULL in one table).
+
+### Types of Joins
+
+#### LEFT JOIN
+- Returns all records from the left (first) table, and matching records from the right (second) table.
+- If there is no match, columns from the right table are filled with NULL.
+- Example:
+```sql
+SELECT employees.username, machines.operating_system
+FROM employees
+LEFT JOIN machines
+    ON employees.employee_id = machines.employee_id;
+```
+
+#### RIGHT JOIN
+- Returns all records from the right (second) table, and matching records from the left (first) table.
+- If there is no match, columns from the left table are filled with NULL.
+- Example:
+```sql
+SELECT employees.username, machines.operating_system
+FROM employees
+RIGHT JOIN machines
+    ON employees.employee_id = machines.employee_id;
+```
+
+#### FULL OUTER JOIN
+- Returns all records from both tables.
+- If there is no match in either table, columns from the missing side are filled with NULL.
+- Example:
+```sql
+SELECT employees.username, machines.operating_system
+FROM employees
+FULL OUTER JOIN machines
+    ON employees.employee_id = machines.employee_id;
+```
+
+- Use the same syntax as INNER JOIN, but replace with LEFT JOIN, RIGHT JOIN, or FULL OUTER JOIN as needed.
+
+### Aggregate Functions
+
+#### What Are Aggregate Functions?
+- Functions that perform a calculation over multiple data points and return a single result (not the actual data).
+- Commonly used to summarize or analyze data in a table.
+
+#### Common Aggregate Functions
+- `COUNT`: Returns the number of rows (excluding NULL values).
+- `AVG`: Returns the average of numerical data in a column.
+- `SUM`: Returns the sum of numerical data in a column.
+
+#### Syntax
+- Place the aggregate function after `SELECT`, with the column name in parentheses.
+- Example: Count total customers in the customers table:
+```sql
+SELECT COUNT(firstname)
+FROM customers;
+```
+- Example: Count customers from the USA only:
+```sql
+SELECT COUNT(firstname)
+FROM customers
+WHERE country = 'USA';
+```
+- The same syntax applies for `AVG` and `SUM` (e.g., `SELECT AVG(age) FROM users;`).
