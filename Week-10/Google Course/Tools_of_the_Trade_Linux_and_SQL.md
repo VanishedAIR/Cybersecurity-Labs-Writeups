@@ -346,8 +346,9 @@ Kali Linux™ is a Debian-based distribution developed by Offensive Security, de
     - **APT (Advanced Package Tool):** Used with Debian-based distros to manage, search, and install packages from the CLI.
     - **YUM (Yellowdog Updater Modified):** Used with Red Hat-based distros to manage, search, and install .rpm packages from the CLI.
 
-### Introduction to the Shell
+## Module 3
 
+### Introduction to the Shell
 - The shell is the command-line interpreter that lets you communicate with the operating system through text commands.
 - Provides the command-line interface (CLI) for interacting with the OS.
 - Commands are instructions you enter to tell the computer what to do; the shell passes these to the kernel for execution.
@@ -356,7 +357,6 @@ Kali Linux™ is a Debian-based distribution developed by Offensive Security, de
 - Allows you to combine commands and connect applications, making complex and automated operations possible.
 
 ### Input and Output in the Shell
-
 - **Standard input (stdin):** Information entered by the user via the keyboard into the shell (e.g., typing a command).
     - Analogy: Like asking your friend a question in a conversation.
 - **Standard output (stdout):** The result or response returned by the OS through the shell after executing a command.
@@ -370,3 +370,269 @@ Kali Linux™ is a Debian-based distribution developed by Offensive Security, de
     - Output (system response)
     - Error (system can't process the command)
 
+### Find What You Need with Linux
+
+#### grep
+- Searches a file for lines containing a specified string and returns those lines.
+    - Syntax: `grep <string> <filename>`
+    - Example: `grep OS updates.txt` returns all lines in updates.txt containing 'OS'.
+    - Useful for quickly finding information in large files.
+
+#### Piping (`|`)
+- Sends the output of one command as input to another command for further processing.
+    - Analogy: Like a physical pipe carrying water from one place to another, piping carries data between commands.
+    - Example: `ls reports | grep users` lists only files/directories in the reports directory that contain 'users' in their name.
+    - Allows you to combine commands for powerful filtering and searching.
+
+### Filter Content in Linux
+
+#### find
+- Searches for directories and files that meet specified criteria.
+    - Can search by name, file size, modification time, and more.
+    - Syntax: `find <start_path> <options>`
+    - Example: `find /home/analyst/projects` searches everything under the projects directory.
+    - Options modify the search and usually start with a hyphen (-).
+    - **-name:**
+        - Searches for names containing a specific string (case-sensitive).
+        - Use quotes and wildcards (`*`) to match patterns (e.g., `find /home/analyst/projects -name "*log*"`).
+    - **-iname:**
+        - Like -name, but case-insensitive.
+    - **-mtime:**
+        - Finds files or directories modified within a certain number of days.
+        - Example: `find /home/analyst/projects -mtime -3` returns items modified in the last 3 days.
+        - `-mtime +1`: modified more than 1 day ago; `-mtime -1`: less than 1 day ago.
+        - Use `-mmin` to search by minutes instead of days.
+
+### Navigating Linux and Reading File Content
+
+#### Filesystem Hierarchy Standard (FHS)
+- Defines how directories and files are organized in Linux.
+    - The system is hierarchical, starting from the root directory (`/`).
+    - **Root directory (`/`):** The highest-level directory; all other directories branch from here.
+    - **Standard FHS directories:**
+        - `/home`: Each user gets a personal home directory.
+        - `/bin`: Contains binary files and executables.
+        - `/etc`: Stores system configuration files.
+        - `/tmp`: Temporary files; accessible by all users (often targeted by attackers).
+        - `/mnt`: Used for mounting external media (USB drives, hard drives).
+    - **User-specific subdirectories:**
+        - Each user has subdirectories under `/home` (e.g., `/home/analyst/logs`).
+        - The tilde (`~`) represents the current user's home directory (e.g., `~/logs`).
+    - **File paths:**
+        - **Absolute path:** Starts from the root (e.g., `/home/analyst/projects`).
+        - **Relative path:** Starts from the current directory (e.g., `../projects`).
+        - `.` represents the current directory; `..` represents the parent directory.
+    - **Pro Tip:** Use `man hier` to learn more about the FHS and standard directories.
+
+#### Key commands for navigating the file system
+- `pwd`: Prints the absolute path of the current working directory.
+    - **Pro Tip:** Use `whoami` to display your current username.
+- `ls`: Lists files and directories in the current directory.
+    - Add a path as an argument to list contents of another directory (e.g., `ls projects`).
+- `cd`: Changes the current directory.
+    - Use a subdirectory name, absolute path, or relative path as an argument.
+    - `cd ..` moves up one level in the directory structure.
+
+#### Common commands for reading file content
+- `cat <filename>`: Displays the entire contents of a file.
+- `head <filename>`: Shows the first 10 lines of a file.
+    - **Pro Tip:** Use `head -n 5 <filename>` to display the first 5 lines.
+- `tail <filename>`: Shows the last 10 lines of a file.
+    - **Pro Tip:** Useful for viewing the most recent entries in log files.
+- `less <filename>`: Opens the file one page at a time for easy navigation.
+    - **Controls in less:**
+        - Space bar: Forward one page
+        - b: Back one page
+        - Down arrow: Forward one line
+        - Up arrow: Back one line
+        - q: Quit and return to terminal
+
+### Create and Modify Directories and Files
+
+- **Organization:** Directories (folders) help keep files and subdirectories organized, making it easier to manage and secure data.
+
+#### Creating and Removing Directories
+- `mkdir <directory>`: Creates a new directory.
+    - Example: `mkdir drafts` creates a drafts directory.
+- `rmdir <directory>`: Removes an empty directory.
+    - Warns you if the directory is not empty.
+    - Example: `rmdir oldreports` removes the oldreports directory.
+
+#### Creating and Removing Files
+- `touch <filename>`: Creates a new, empty file.
+    - Example: `touch email_patches.txt` creates a new file.
+- `rm <filename>`: Removes (deletes) a file.
+    - Example: `rm email_patches.txt` deletes the file.
+
+#### Moving and Copying Files/Directories
+- `mv <source> <destination>`: Moves a file or directory to a new location.
+    - Example: `mv email_policy.txt drafts/` moves the file into the drafts directory.
+- `cp <source> <destination>`: Copies a file or directory to a new location.
+    - Example: `cp vulnerabilities.txt ../projects/` copies the file to the projects directory.
+
+#### Editing Files
+- **nano:** A beginner-friendly file editor accessible via the command line.
+    - Open a file: `nano OS_patches.txt`
+    - Save changes: `Ctrl+O`, then Enter
+    - Exit nano: `Ctrl+X`
+    - Useful for writing or editing reports and configuration files.
+
+### Manage Directories and Files: Standard Output Redirection
+
+#### Output Redirection Operators
+- `>` and `>>` are used to redirect standard output to a file instead of the screen.
+    - `>` overwrites the file with new content.
+    - `>>` appends new content to the end of the file.
+    - Both operators create the file if it doesn't already exist.
+
+#### Usage Examples
+- `echo "last updated date" >> permissions.txt`
+    - Appends "last updated date" to the end of permissions.txt.
+- `echo "time" > permissions.txt`
+    - Overwrites permissions.txt with "time" as the only content.
+
+#### Notes
+- Use `>` carefully, as it will overwrite the entire file and recovery is difficult.
+- These operators can be used with many commands, not just echo, to save or append output to files.
+
+### File Permissions and Ownership
+
+#### Permissions
+- Define the type of access granted for a file or directory (authorization).
+- Three types of permissions:
+    - **Read (r):**
+        - File: Can read contents.
+        - Directory: Can list files in the directory.
+    - **Write (w):**
+        - File: Can modify contents.
+        - Directory: Can create or delete files in the directory.
+    - **Execute (x):**
+        - File: Can execute the file if it's an executable.
+        - Directory: Can enter the directory and access its files.
+
+#### Ownership Types
+- **User:** The owner of the file (usually the creator).
+- **Group:** A set of users; group permissions apply to all users in the group.
+- **Other:** All other users on the system.
+
+#### Permission String Format
+- Permissions are shown as a 10-character string (e.g., `drwxrwxrwx`).
+    - 1st character: File type (`d` for directory, `-` for file).
+    - 2nd-4th: User permissions (rwx).
+    - 5th-7th: Group permissions (rwx).
+    - 8th-10th: Other permissions (rwx).
+    - Hyphens (`-`) indicate missing permissions.
+- Example: `-rw-r--r--` means user can read/write, group and other can only read.
+
+#### Security Implications
+- Only grant access on a need-to-know basis.
+- World-writable files (write permission for user, group, and other) are a security risk.
+- Sensitive files (e.g., payroll) should be restricted to appropriate users/groups.
+
+#### Checking Permissions
+- **Options** modify command behavior (single letter or word).
+- `ls -l`: Lists files/directories with permissions and ownership info.
+- `ls -a`: Shows hidden files (names start with a period).
+- `ls -la`: Combines both to show permissions for all files, including hidden ones.
+    - Example output: `-rw-r--r-- 1 analyst security 1234 Jan 1 12:00 project1.txt`
+        - Shows permissions, user, group, file size, date, and file name.
+
+### Change Permissions with chmod
+
+- `chmod` (change mode) changes permissions on files and directories.
+- Focus on symbolic mode for changing permissions.
+
+#### Symbolic Mode Structure
+- Syntax: `chmod [owner][operator][permission] <file>`
+    - **Owner types:**
+        - `u`: user (owner)
+        - `g`: group
+        - `o`: other
+    - **Operators:**
+        - `+`: add permission
+        - `-`: remove permission
+    - **Permissions:**
+        - `r`: read
+        - `w`: write
+        - `x`: execute
+- Multiple owner types can be separated by commas (e.g., `g+w,o-r`).
+
+#### Example
+- `chmod g+w,o-r access.txt`
+    - Adds write permission for group.
+    - Removes read permission for other.
+- Use `ls -l` before and after to verify permission changes.
+    - Hyphens (`-`) in the permission string indicate missing permissions.
+
+#### Notes
+- You don't need to memorize all options; references are always available.
+- Adjust permissions carefully to maintain security.
+
+### Add and Delete Users
+
+#### User Management
+- Only authorized users should have access to the system.
+- Add new users when people join or change roles; delete users when they leave or no longer need access.
+
+#### Root User and sudo
+- **Root user (superuser):** Has full system privileges; can create, modify, or delete any file and run any program.
+    - Running as root is risky (security, mistakes, lack of accountability).
+    - Best practice: Disable direct root logins and use sudo for elevated tasks.
+- **sudo:** Temporarily grants elevated permissions to specific users for running commands.
+    - Users must be granted sudo access in the sudoers file.
+    - Prompts for the current user's password.
+
+#### Adding and Deleting Users
+- Only root or users with sudo privileges can add or delete users.
+- **Add a user:**
+    - `sudo useradd <username>`
+    - Example: `sudo useradd salesrep7` adds a new user named salesrep7.
+- **Delete a user:**
+    - `sudo userdel <username>`
+    - Example: `sudo userdel salesrep7` deletes the user salesrep7.
+- Successful commands return a new Bash prompt with no error message.
+
+### Responsible Use of sudo and User Management Commands
+
+#### useradd
+- Adds a user to the system (requires sudo/root privileges).
+    - Syntax: `sudo useradd <username>`
+    - `-g <group>`: Sets the user's primary group.
+        - Example: `sudo useradd -g security fgarcia` assigns fgarcia to the security group.
+    - `-G <group1,group2>`: Adds user to supplemental (secondary) groups.
+        - Example: `sudo useradd -G finance,admin fgarcia` adds fgarcia to finance and admin groups.
+
+#### usermod
+- Modifies existing user accounts.
+    - `-g <group>`: Changes the primary group.
+        - Example: `sudo usermod -g executive fgarcia` changes fgarcia's primary group to executive.
+    - `-G <group1,group2>`: Sets supplemental groups (replaces existing unless used with -a).
+    - `-a -G <group>`: Appends user to additional groups (use only with -G).
+        - Example: `sudo usermod -a -G marketing fgarcia` adds fgarcia to marketing group.
+    - `-d <directory>`: Changes the user's home directory.
+        - Example: `sudo usermod -d /home/garcia_f fgarcia`
+    - `-l <newname>`: Changes the user's login name.
+    - `-L`: Locks the account (prevents login).
+        - Example: `sudo usermod -L fgarcia`
+    - **Note:** Omitting `-a` with `-G` will replace all supplemental groups.
+
+#### userdel
+- Deletes a user from the system.
+    - Syntax: `sudo userdel <username>`
+    - `-r`: Deletes the user's home directory and files.
+        - Example: `sudo userdel -r fgarcia`
+    - **Best practice:** Backup important files before deleting a user.
+    - To deactivate (not delete) a user, use `usermod -L` to lock the account.
+
+#### chown
+- Changes ownership of a file or directory.
+    - Syntax: `sudo chown <user> <file>` changes user owner.
+        - Example: `sudo chown fgarcia access.txt`
+    - Syntax: `sudo chown :<group> <file>` changes group owner.
+        - Example: `sudo chown :security access.txt`
+    - Use a colon (:) before the group name to specify group ownership.
+
+#### Best Practices
+- Use sudo responsibly—only grant elevated privileges when necessary.
+- Always double-check commands before running as root or with sudo to avoid accidental changes or deletions.
+- Consider deactivating accounts instead of deleting them to preserve data and track ownership.
