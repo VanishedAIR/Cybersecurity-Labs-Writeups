@@ -121,3 +121,72 @@
   - NumPy: For arrays and mathematical computations
 - **Security use:** Assist in network traffic analysis, log file parsing, and complex math.
 
+## Module 3
+
+### Regular Expressions in Python
+
+#### Regex Overview
+- **Definition:** Regular expression (regex) is sequence of characters that forms pattern.
+- **Use:** Can search for any kind of pattern within log files.
+- **Examples:** Find strings starting with certain prefix or strings of certain length.
+- **Security context:** Can find all IP addresses with specific network ID (e.g., 184).
+
+#### Regex Symbols
+
+##### Plus Sign (+)
+- **Function:** Represents one or more occurrences of specific character.
+- **Example:** Pattern `a+` matches string of any length where "a" is repeated.
+- **Matches:** Single "a", three "a's", five "a's", or even 1000 "a's" in row.
+
+##### \w Symbol
+- **Function:** Matches any alphanumeric character but doesn't match symbols.
+- **Examples:** "1", "k", "i" are examples of what `\w` matches.
+- **Combination:** `\w+` matches alphanumeric string of any length.
+- **Flexibility:** `\w` provides flexibility in alphanumeric characters, plus sign provides flexibility in string length.
+
+#### Email Address Extraction
+- **Challenge:** Need to extract email addresses from log without knowing specific emails.
+- **Solution:** Use regex to tell Python how email address is structured.
+- **Email format:** `user1@email1.com` with segments separated by @ symbol and period.
+- **Regex pattern:** `\w+@\w+\.\w+`
+  - First `\w+`: Alphanumeric characters of varying length (username)
+  - `@`: Always present @ symbol
+  - Second `\w+`: Domain name with alphanumeric characters
+  - `\.`: Period (backslash needed because period has special meaning in regex)
+  - Third `\w+`: Final part (com, net, etc.)
+
+#### Python Implementation
+- **Import:** Use `re` module for regular expressions in Python.
+- **Function:** `re.findall()` returns list of matches to regular expression.
+- **Usage:** `re.findall(pattern, string)` where pattern is regex in quotes and string is where to search.
+
+#### Basics of Regular Expressions
+
+##### Regex Overview
+- **Definition:** Regular expression (regex) is sequence of characters that forms pattern.
+- **Use:** Can search for variety of patterns including IP addresses, emails, or device IDs.
+- **Import:** Need to import `re` module first with `import re`.
+- **Storage:** Regular expressions stored in Python as strings.
+
+##### re.findall() Function
+- **Function:** Returns list of matches to regular expression.
+- **Parameters:** Requires two parameters.
+  - First: String containing regular expression pattern
+  - Second: String to search through
+- **Example:** `re.findall("ts", "tsnow, tshah, bmoreno")` returns `['ts', 'ts']`.
+
+##### Regular Expression Symbols
+
+###### Symbols for Character Types
+- **\w:** Matches any alphanumeric character (also matches underscore _).
+- **.:** Matches all characters, including symbols.
+- **\d:** Matches all single digits [0-9].
+- **\s:** Matches all single spaces.
+- **\.:** Matches the period character.
+
+###### Symbols to Quantify Occurrences
+- **+ symbol:** Represents one or more occurrences of specific character.
+  - Example: `\d+` finds matches to one or more occurrences of single digit.
+- **\* symbol:** Represents zero, one, or more occurrences of specific character.
+  - Example: `\d*` finds matches to zero, one, or more occurrences of single digit.
+
