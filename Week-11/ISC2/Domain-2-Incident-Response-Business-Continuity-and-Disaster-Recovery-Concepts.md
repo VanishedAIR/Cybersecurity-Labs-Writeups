@@ -180,3 +180,95 @@
 
 - **Individual Checklists:** Customized checklists for certain individuals based on their specific roles and responsibilities.
 
+## Business Continuity Importance
+
+### Operational Sustainability
+
+- **Business Continuity Plan Intent:** Designed to sustain business operations while recovering from significant disruptions that create environmental disturbances.
+
+- **Communication Infrastructure:** Key component includes multiple contact methodologies and backup numbers in case of power or communications disruption.
+
+### Procedural Framework
+
+- **Phone Tree Systems:** Organizations establish contact chains so if one person is unavailable, they know who else to call.
+
+- **Checklist Procedures:** Organizations follow established procedures and checklists to ensure everyone knows their responsibilities, similar to pilots using pre-flight checklists.
+
+- **Management Involvement:** Management must be included as priorities can change depending on the situation, and individuals with proper authority must be present to execute operations.
+
+### Critical Contact Networks
+
+- **Supply Chain Contacts:** Must have critical contact numbers for supply chain, law enforcement, and external facilities.
+
+- **Emergency Communications:** In critical infrastructure like hospitals, specific numbers can bypass normal cell services and use military-grade networks during major disruptions or cyberattacks.
+
+- **Authorized Access:** These emergency communication channels are assigned to authorized individuals for critical infrastructures to maintain essential activity during disruptions.
+
+## Incident Response Team Structure
+
+### Team Composition
+
+- **Staffing Models:** Incident response teams can be leveraged, dedicated, or a combination depending on organizational requirements.
+
+- **IT First Responders:** Many IT professionals are classified as first responders who can differentiate typical IT problems from security incidents.
+
+- **Medical Analogy:** Similar to medical first responders who determine the difference between minor and major injuries, IT professionals need specific training to distinguish between typical problems and security incidents requiring higher-level attention.
+
+### Cross-Functional Team Members
+
+- **Senior Management Representatives:** Provide organizational oversight and decision-making authority.
+
+- **Information Security Professionals:** Technical expertise in security incident handling.
+
+- **Legal Representatives:** Ensure compliance and legal considerations are addressed.
+
+- **Public Affairs/Communications Representatives:** Handle external communications and public relations.
+
+- **Engineering Representatives:** System and network technical expertise for incident investigation and recovery.
+
+### Team Responsibilities
+
+- **Training Requirements:** Team members should have training on incident response and the organization's incident response plan.
+
+- **Investigation Activities:** Assist with investigating incidents, assessing damage, collecting evidence, reporting incidents, and initiating recovery procedures.
+
+- **Post-Incident Activities:** Participate in remediation, lessons learned stages, and root cause analysis.
+
+### Dedicated Response Teams
+
+- **CIRT/CSIRT:** Many organizations have dedicated computer incident response teams (CIRTs) or computer security incident response teams (CSIRTs) for investigating computer security incidents.
+
+- **Primary Responsibilities:**
+  - Determine amount and scope of damage caused by the incident
+  - Determine whether confidential information was compromised
+  - Implement necessary recovery procedures to restore security
+  - Supervise implementation of additional security measures to prevent recurrence
+
+## Disaster Recovery Real-World Scenarios
+
+### Critical System Identification
+
+- **Formal Identification:** Organizations must formally identify critical systems and ensure backups are regularly tested.
+
+- **Delayed Detection:** Incidents may not be recognized or detected until days or months later, complicating recovery efforts.
+
+### Hospital Incident Example
+
+- **Extended Compromise:** At a Los Angeles hospital, it took 260 days (8.5 months) to discover a compromise.
+
+- **Backup Corruption:** The hospital could not use the last backup because it contained time-based malware that would corrupt all data upon restoration.
+
+- **Extended Recovery:** Required going back nearly a year before the incident to restore the entire system, then restoring remaining data piece-by-piece to avoid reinfection.
+
+- **Multiple Backup Levels:** This scenario highlights the need for multiple levels of backup and retention periods to address organizational needs.
+
+### Complex System Dependencies
+
+- **Multi-Server Storage:** Complex systems often store valuable information across several servers, requiring consideration beyond basic server-level backups.
+
+- **Database Dependencies:** Disaster recovery plans must consider the database itself and dependencies on other systems.
+
+- **Data Distribution:** In complex scenarios, data entered into one system and database is distributed to other systems, common in large enterprises where multiple systems need to communicate.
+
+- **System Integration:** Understanding data flow and intricate dependencies between systems is crucial for properly documenting and implementing successful disaster recovery plans.
+
