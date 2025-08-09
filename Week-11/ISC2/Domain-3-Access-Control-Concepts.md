@@ -156,3 +156,134 @@
     -   More stringent access control (MFA, just-in-time identity)
     -   Deeper trust verification (background checks, NDAs, financial investigation)
     -   More auditing and monitoring than regular accounts
+
+## Monitoring (Physical)
+
+-   **Cameras:** Centrally monitored; deter, detect (with sensors), and provide forensic evidence
+-   Used where access is difficult or a recorded audit trail is needed
+-   **Sensors:**
+    -   Motion (infrared, microwave, laser) for exterior/perimeter detection
+    -   Door/gate/turnstile sensors; strain/vibration for fence scaling
+    -   Proper integration alerts on intrusions across open space or fence line
+
+## Physical Logs
+
+-   **Definition:** Records of physical access/events (e.g., guard sign-in sheet, electronic access system)
+-   **Retention:** Keep as long as required by legal/business needs (consult legal)
+    -   Example: PCI DSS requires 1 year of log data retention
+-   **Protection:** Safeguard against tampering and unauthorized disclosure (logs may contain sensitive data)
+-   **Review:** Organization should have policy for regular log reviews
+-   **Anomalies:** Identify gaps, lockouts, unusual writes; avoid logging everything to prevent data overload
+
+## Alarm Systems
+
+-   **Door/Window Alarms:** Alert when opened unexpectedly; authorized badge/code access should not trigger
+-   **Fire Alarms:** Triggered by heat/smoke; audible warnings and automatic contact with responders
+-   **Panic Buttons:** Directly alert police/security when activated
+
+## Security Guards
+
+-   **Role:** Effective physical control; deter impersonation and tailgating
+-   **Program:** Pair with physical access controls, monitoring of personnel/equipment, and auditing/logging of physical events
+
+## Mandatory Access Control (MAC)
+
+-   System-enforced access based on centralized policy; minimal individual discretion
+-   Common in government environments with security clearances and classified resources
+-   Access decisions use labels/classifications for subjects and objects
+-   Paired with separation of duties to limit scope of work
+-   RBAC can support operational constraints alongside MAC
+
+-   **Uniform Enforcement:** Applies across all subjects/objects within the system boundary
+-   **Rule Changes:** Only designated security administrators can modify access rules
+-   **Subject Constraints (cannot):**
+    -   Pass information to unauthorized subjects/objects
+    -   Grant their privileges to other subjects
+    -   Change security attributes on subjects/objects/system/components
+    -   Choose security attributes for new/modified objects
+    -   Change rules governing access control
+-   **MAC vs DAC:**
+    -   MAC: administrators assign rights/permissions
+    -   DAC: object owners grant access at their discretion
+
+## Physical Security Controls
+
+-   **Definition:** Tangible mechanisms to prevent, monitor, or detect physical access to sites/systems
+-   **Examples (condensed):** Security guards, locks/doors, fences, badges/swipe cards, mantraps/turnstiles, cameras, motion/magnetic sensors, alarms, lighting, cable/laptop locks
+-   **Priority:** Protect people first, then facilities, equipment, and information assets
+-   **Purpose:** Prevent unauthorized entry; reduce theft, tampering, and safety risks
+-   **Approach:** Use in layers with logical and administrative controls (see Defense in Depth)
+
+## Separation of Duties
+
+-   **Concept:** No single person controls an entire high-risk transaction end-to-end
+-   **Mechanism:** Split tasks; different people execute each part
+-   **Examples:**
+    -   Invoices: employee submits; manager approves before payment
+    -   System changes: proposal requires technical and management review/approval
+-   **Benefit:** Prevents fraud; detects errors before implementation
+-   **Nuance:** Permissions can differ across activities (submit vs approve in different areas)
+-   **Risk:** Collusion (two people cooperate to bypass controls)
+-   **Dual Control:** Two separate keys/codes required (e.g., bank vault with two combinations)
+
+## Two-Person Integrity (Two-Person Rule)
+
+-   **Requirement:** Minimum two people must be present in selected high-security areas
+-   **Enforcement:** Access systems can require accompanied entry
+-   **Purpose:** Reduce insider threats; provide life safety (assistance if medical emergency)
+
+## Discretionary Access Control (DAC)
+
+-   Owner-driven policy: object owners grant/revoke access at their discretion
+-   Subjects with access may (policy permitting):
+    -   Pass information to other subjects/objects
+    -   Grant their privileges to other subjects
+    -   Change security attributes on subjects/objects/systems
+    -   Choose security attributes for new/modified objects
+    -   Change rules governing access control
+-   Common in Windows and Unix/Linux/iOS; uses subject↔object permission tables
+    -   Object's Access Control List (ACL): subjects with permissions for that object
+    -   Subject's capabilities list: objects the subject has permissions for
+-   Pros/Cons: flexible for owners; not very scalable and harder to trace access issues
+-   Workplace examples:
+    -   Online file sharing: creator selects who can view/edit
+    -   Temporary low-tech: visitor badge issued at security desk
+
+## Authorized vs Unauthorized Personnel
+
+-   **Authentication:** Confirms subject identity
+-   **Authorization:** Verifies permissions for requested action via security matrix/ACL
+-   **Examples:**
+    -   Data center door: badge ID checked against matrix; door unlocks only if authorized
+    -   File delete: filesystem checks permissions; allow/deny accordingly
+
+## User Provisioning
+
+-   **New Employee:** Manager requests account; security admin creates ID with appropriate access; extra approval for elevated rights per policy
+-   **Change of Position:** Update permissions to match new role; remove access no longer needed
+-   **Separation:** Disable at termination date/time; retain account briefly for audit trail, then delete; remove from roles/profiles
+-   **Best Practice:** Avoid copying user profiles to new users to prevent privilege/permission creep; provision from standard roles
+
+## Types of Physical Access Controls
+
+### Environmental Design (CPTED)
+
+-   Passive design to deter crime using organizational, mechanical, and natural design methods
+-   Directs people flow, signals who belongs, increases visibility of hidden areas
+-   Supports secure, functional spaces for creating/processing/storing information
+
+### Badge Systems and Gate Entry
+
+-   Access system compares badge to verified database; unlocks doors/gates if authenticated
+-   Integrates with logging for authorized/unauthorized access events
+-   High-security environments may include biometric enrollment
+
+### Biometrics
+
+-   Authenticates identity using unique personal characteristics (PII; obtain consent)
+-   Processes:
+    -   Enrollment: store biometric template (system or user smart card)
+    -   Verification: present biometric to match stored template
+-   Physiological examples: fingerprints, iris/retina, palm/vein scans; liveness checks to prevent spoofing
+-   Behavioral examples: voiceprints, signature dynamics, keystroke dynamics (hold/transfer rates)
+-   Considerations: higher cost and maintenance, privacy concerns, device sanitization challenges
