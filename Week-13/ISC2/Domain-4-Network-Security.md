@@ -40,7 +40,7 @@
 - **Wireless Networking:** Popular method for corporate and home systems due to ease of deployment and low cost
 - **Range:** Generally wide enough for most homes/small offices; range extenders can expand coverage for larger campuses
 - **Evolution:** Wi-Fi standard continuously improves with each version being faster than the last
-- **Security Consideration:** 
+- **Security Consideration:**
   - Wired LAN: threat actors need physical access (sniffer taps, USB devices, physical media access)
   - Wireless: intrusions can happen at a distance without physical access
 
@@ -229,4 +229,241 @@
 - **Operations:** Problem identification/resolution expectations, change management processes
 - **Dispute Resolution:** Mediation processes and exit strategy
 
+## Memorandum of Understanding (MOU) / Memorandum of Agreement (MOA)
 
+- **Purpose:** Organizations minimize downtime and enhance Business Continuity (BC) and Disaster Recovery (DR) capabilities
+- **Agreement:** If one party experiences emergency and cannot operate in their facility, the other party shares resources
+- **Participants:** Often include competitors because facilities/resources meet industry needs
+- **Example:** Hospital A and Hospital B (competitors) agree to share facilities during emergencies
+  - Can send personnel and systems to work in other hospital during interruptions
+  - Compete on service, price, and customer loyalty, not safety/security
+- **Names:** Joint operating agreements (JOA), memoranda of understanding (MOU), or memoranda of agreement (MOA)
+- **Regulatory:** Sometimes mandated by requirements or part of administrative safeguards
+- **Difference from SLA:** MOU/MOA more directly related to what can be done with system/information
+- **SLA Granularity:** Specifies intricate service aspects (e.g., two technicians available Monday-Friday, 10-minute backup access)
+- **Caution:** Must understand exactly what is agreed to; legal team should review conditions before signing
+
+## Ports and Protocols (Applications/Services)
+
+- **Physical Ports:** Hardware interfaces on devices (routers, switches, servers, computers) for connecting cables (e.g., fiber, Cat5).
+- **Logical Ports:** Software-defined endpoints (sockets) used for network communications.
+  - Ports allow a single IP to handle multiple connections using different port numbers.
+  - Example: HTTP uses port 80, HTTPS uses port 443.
+  - Some protocols have both secure and nonsecure ports.
+- **Well-known Ports (0–1023):** Reserved for core protocols (e.g., DNS, SMTP, HTTP).
+- **Best Practice:** Use the most secure protocol version available.
+
+## Networking Models
+
+- **Purpose:** Enable interconnection and communication between diverse hardware/software for sharing info and collaboration.
+- **Key Goals:**
+  - Reliable, managed communications between hosts/users.
+  - Layer isolation for functions.
+  - Packet-based communication.
+  - Standardized routing, addressing, and control.
+  - Extensible functionality beyond internetworking.
+  - Vendor-agnostic, scalable, resilient design.
+- **Upper Layer (Host/Application Layer):**
+  - Manages connection integrity and session control.
+  - Handles data formatting and application communication.
+  - Establishes, maintains, and terminates sessions.
+- **Lower Layer (Media/Transport Layer):**
+  - Receives bits from physical medium and forms frames.
+  - Frames are standardized containers for data (like buckets for water).
+  - Adds routing info to create packets.
+  - Prepares data for delivery to the host layer.
+
+## Network Design
+
+- **Objective:** Meet data communication needs and ensure efficient network performance.
+
+## Network Segmentation
+
+- **Definition:** Controls traffic between networked devices.
+  - Complete/physical segmentation: network is fully isolated, allowing communication only within the segment.
+
+## Demilitarized Zone (DMZ)
+
+- **DMZ:** Network area accessible to external users but separated from the organization's private network.
+  - Commonly hosts public-facing servers (web, email, file, etc.).
+
+## Virtual Local Area Network (VLAN)
+
+- **Virtual Local Area Networks (VLANs):** Allow network administrators to use switches to create software-based LAN segments.
+  - Can segregate or consolidate traffic across multiple switch ports.
+- **Communication:**
+  - Devices on the same VLAN communicate as if on the same Layer 2 network.
+  - Traffic between different VLANs must be explicitly enabled.
+- **Benefits:**
+  - Limits broadcast traffic to the VLAN, reducing congestion and the effectiveness of some attacks.
+  - Simplifies administration when users change physical locations or require different service access.
+- **Configuration:** Can be based on switch port, IP subnet, MAC address, and protocols.
+- **Security Warning:** VLANs do not guarantee security, as attacks like "VLAN hopping" can allow users to see traffic from other VLANs.
+- **Summary:** VLANs logically segment a network without changing its physical structure, improving management and limiting broadcast domains.
+
+## TCP/IP Protocol Architecture
+
+- **Background:** TCP/IP was developed in the early 1970s, before the OSI model, and is the most widely used protocol suite today.
+- **TCP/IP Stack:** Not a single protocol, but a suite of protocols based on open standards; platform-independent and widely supported.
+  - **Drawback:** Consumes significant resources and was designed for usability, not security, making it easier to attack.
+- **Layers:**
+  - **Application Layer:** Defines protocols for the transport layer (e.g., Telnet, FTP, SMTP, DNS).
+  - **Transport Layer:** Moves data between devices; main protocols are TCP (connection-oriented, full-duplex) and UDP (connectionless, simplex).
+  - **Internet Layer:** Responsible for creating and inserting packets; includes protocols like ICMP.
+    - **ICMP:** Used for network health checks (e.g., ping, traceroute).
+      - `ping` uses ICMP echo packets to test connectivity and response time.
+  - **Network Interface Layer:** Handles how data moves through the network.
+
+## Segmentation for Embedded Systems and IoT
+
+- **Embedded Systems:** Computers built into larger products, focused on specific functions (e.g., network printers, smart TVs, HVAC controls, medical devices).
+- **Network-Enabled Devices:** Any device with built-in network capabilities, often wireless (e.g., smartphones, tablets, smart TVs, streaming devices, game systems).
+- **Internet of Things (IoT):** Collection of devices that communicate over the internet to monitor or control the real world (smart-home equipment, industrial controls).
+- **Security Considerations:**
+  - Embedded and IoT devices often control physical mechanisms, so breaches can cause real-world harm.
+  - Devices may have multiple access methods (Ethernet, Wi-Fi, Bluetooth), increasing risk.
+  - Special care is needed to isolate these devices from the rest of the network.
+- **Segmentation Methods:**
+  - Use VLANs, MAC/IP address filtering, physical ports, protocols, application filtering, routing, and access control to separate IoT/embedded devices.
+  - Logical network segmentation helps prevent malicious access and limits attack impact.
+
+## On-Premises Data Centers
+
+- **Ownership:** Organizations can own (on-premises) or outsource data centers.
+- **Physical Requirements:** Need a dedicated building/space, power, HVAC, fire suppression, and redundancy.
+
+### 1. Data Center/Closets
+
+- **Wiring Infrastructure:** Critical for security and reliability; physical access must be protected to prevent damage.
+- **Components:** May include phone/network connections, ISP/telecom equipment, servers, wiring, and switches.
+- **Cooling:** High-density/enclosed equipment needs adequate airflow and cooling.
+  - Recommended temp: 64°–81°F (18°–27°C).
+  - Use three sensors (top, middle, bottom) per rack to monitor temps.
+
+### 2. HVAC / Environmental
+
+- **Airflow:** Control contaminants (dust, fumes) to protect equipment.
+- **Monitoring:** Integrate water/gas leak, sewer overflow, and HVAC failure detection with alarms.
+- **Contingency Planning:** Prioritize systems to minimize impact of failures on people, operations, and infrastructure.
+
+### 3. Power
+
+- **Power Supply:** Must be constant and consistent; fluctuations reduce lifespan, outages halt operations.
+- **Backup:** Generators sized for critical load; batteries bridge gap until generators start.
+- **Testing:** Regularly test failover systems to ensure reliability.
+
+### 4. Fire Suppression
+
+- **Considerations:** Choose suppression based on room size, occupancy, exit routes, and equipment risk.
+- **Methods:** Water can damage electronics; gas-based systems are safer for equipment but may be hazardous to people.
+
+## Open Systems Interconnection (OSI) Model
+
+- **Purpose:** Provides a standard framework for describing how protocols and network components interact.
+- **Structure:** Divides networking into seven layers, each with specific functions to support data exchange between computers.
+  - Layers communicate directly with the one above and below.
+- **Layer Overview:**
+  - **Layer 1: Physical** – Transmits raw binary data over physical media (e.g., Ethernet cables).
+  - **Layer 2: Data Link** – Handles frames; includes switches, bridges, WAPs.
+  - **Layer 3: Network** – Manages packets and routing; routers operate here.
+  - **Layer 4: Transport** – Manages end-to-end connections (TCP/UDP).
+  - **Layer 5: Session** – Manages sessions/logical ports (e.g., NetBIOS).
+  - **Layer 6: Presentation** – Translates data formats (e.g., JPEG, PNG).
+  - **Layer 7: Application** – Closest to the user; interfaces with software applications.
+- **Encapsulation:** As data moves down the OSI layers, each layer adds its own header (and sometimes footer), wrapping the previous layer's data.
+  - Data unit size increases as it moves down the layers.
+- **De-encapsulation:** As data moves up the layers, headers/footers are removed and interpreted, shrinking the data unit.
+- **Usage:** The OSI model is a conceptual tool for understanding how different networking technologies and protocols fit together.
+
+## Network Access Control (NAC)
+
+- **Purpose:** Controls and monitors access to the organization's network by enforcing security policies for all connecting devices.
+- **Scope:** Applies to both internal (employees, contractors) and external (guests, partners, vendors) users and devices.
+- **Modern Challenges:** Includes BYOD (bring your own device) and IoT, expanding the range of devices needing control (e.g., HVAC, cameras, sensors, vending machines).
+- **Capabilities:**
+  - Enforces access control and security policies (does not create them).
+  - Provides network visibility for access security and incident response.
+  - Can isolate noncompliant devices in a quarantine network and offer remediation (e.g., enabling endpoint protection).
+  - Ensures only compliant devices can join the network.
+- **Use Cases:** Medical devices, IoT, BYOD/mobile devices (laptops, tablets, smartphones), guest users, and contractors.
+- **Best Practice:** All mobile/temporary devices should be onboarded and checked for compliance each time they connect.
+
+## Deployment Models
+
+- **Public Cloud:** Open to the public, hosted by an external cloud service provider (CSP), shared resource pool, easy access for anyone who pays. Service-level agreements (SLAs) help ensure acceptable service.
+- **Private Cloud:** Built and used by a single organization, not shared with the public. Organization is responsible for maintenance, but can also rent resources from third parties. Offers private access to cloud resources.
+- **Hybrid Cloud:** Combines two or more cloud models (usually public and private). Lets organizations keep control over critical systems while using public cloud for non-critical workloads. Benefits include flexibility, scalability, cost savings, and reuse of existing investments.
+- **Community Cloud:** Built for a specific group or community with shared interests (e.g., industry-specific). Can be public or private, allowing members to share IT resources for common goals.
+
+## Types of Threats
+
+- **Spoofing:** Using a fake identity to gain access (can target IP, MAC, usernames, system names, SSIDs, email, etc.).
+- **Denial-of-Service (DoS) / Distributed Denial-of-Service (DDoS):** Overloads a system to prevent legitimate use; DDoS uses many compromised systems.
+- **Worms:** Self-propagating malware that spreads without user action.
+- **On-Path Attack (Man-in-the-Middle, MITM):** Attacker intercepts or alters communication between two parties.
+- **Advanced Persistent Threat (APT):** Highly sophisticated, long-term attacks by organized groups.
+- **Malware:** Any program inserted to compromise confidentiality, integrity, or availability, or to disrupt the victim.
+- **Phishing:** Tricks users into visiting malicious sites or revealing sensitive info, often via fake emails/links.
+- **Virus:** Self-replicating code that spreads with user assistance (e.g., opening files/links); causes damage.
+- **Trojan:** Malicious software disguised as legitimate, often used to deliver ransomware or other payloads.
+- **Side-Channel Attack:** Passive attack using indirect methods (e.g., power, timing, or fault analysis) to gather info.
+- **Insider Threat:** Risk from trusted individuals (employees, contractors) who may act maliciously or be manipulated.
+- **Ransomware:** Malware that encrypts files and demands payment for decryption.
+
+## Defense in Depth
+
+- **Concept:** Uses multiple, layered security controls (administrative, technical, physical) to protect assets, similar to layers of a castle.
+- **Purpose:** Deters attackers by making compromise more difficult; encourages attackers to move on to easier targets.
+- **Layers/Examples:**
+  - **Data:** Encryption, data leak prevention, identity/access management, data controls.
+  - **Application:** Application firewalls, database monitors, DLP for apps.
+  - **Host:** Antivirus, endpoint firewalls, configuration, patch management.
+  - **Perimeter:** Gateway firewalls, honeypots, malware analysis, DMZs.
+  - **Internal Network:** IDS/IPS, internal firewalls, network access controls.
+  - **Physical:** Locks, walls, access control systems.
+  - **Policies & Awareness:** Administrative controls, training, procedures to reduce insider threats and identify risks early.
+- **Trusted Elements:** Includes trusted admins, developers, update processes, LANs, web apps, facilities, and internal users.
+
+## Internet Protocol (IPv4 and IPv6)
+
+- **IPv4:** 32-bit address, written as four octets (e.g., 192.168.1.1), each 0-255.
+  - First octet 0 = network, 255 = broadcast.
+  - Address split into network and host parts.
+  - Subnets use subnet masks (e.g., 255.255.255.0) to define network portions.
+  - Private address ranges (not routable on the internet):
+    - 10.0.0.0 – 10.255.255.254
+    - 172.16.0.0 – 172.31.255.254
+    - 192.168.0.0 – 192.168.255.254
+  - 127.0.0.1 is the loopback address for local testing.
+- **IPv6:** 128-bit address, written as eight groups of four hex digits (e.g., 2001:db8::ff:0:1).
+  - Uses colons (:) as separators; can be shortened by omitting leading zeros and using "::" for consecutive zeros.
+  - Vast address space (2^128 addresses).
+  - Security: IPsec is mandatory in IPv6.
+  - Improved quality of service (QoS) support.
+  - Reserved addresses:
+    - ::1 is the loopback address (like 127.0.0.1 in IPv4).
+    - 2001:db8::/32 for documentation/examples.
+    - fc00::/7 for internal/private use (not routable on the internet).
+
+## Secure and Insecure Ports
+
+- **Cleartext Protocols:** Some protocols transmit data unencrypted, making them vulnerable to sniffing attacks (usernames, passwords, files).
+- **Best Practice:** Use secure alternatives that encrypt data in transit.
+
+| Insecure Port | Protocol | Description                                   | Secure Alternative                          | Secure Protocol          |
+| ------------- | -------- | --------------------------------------------- | ------------------------------------------- | ------------------------ |
+| 80            | HTTP     | Web traffic, not encrypted                    | 443                                         | HTTPS (TLS)              |
+| 445           | SMB      | Windows file sharing, unencrypted             | 2049 (recommended: block both at perimeter) | NFS (can use encryption) |
+| 21            | FTP      | File transfer, sends credentials in plaintext | 22                                          | SFTP                     |
+| 23            | Telnet   | Remote terminal, plaintext                    | 22                                          | SSH                      |
+| 25            | SMTP     | Email sending, unencrypted                    | 587                                         | SMTP with TLS            |
+| 37            | Time     | Legacy time sync                              | 123                                         | NTP                      |
+| 53            | DNS      | Domain name resolution, unencrypted           | 853                                         | DNS over TLS (DoT)       |
+| 143           | IMAP     | Email retrieval, unencrypted                  | 993                                         | IMAP with SSL/TLS        |
+| 161/162       | SNMP     | Network management, sensitive info            | 161/162                                     | SNMPv3 (encrypted)       |
+| 389           | LDAP     | Directory services, unencrypted               | 636                                         | LDAPS (SSL/TLS)          |
+
+- **Notes:**
+  - SSL is deprecated; use TLS 1.3 or higher for secure web traffic.
+  - SNMPv3 uses the same ports as earlier versions but adds encryption and security features.
+  - Avoid allowing insecure protocols through firewalls, especially at the network perimeter.
