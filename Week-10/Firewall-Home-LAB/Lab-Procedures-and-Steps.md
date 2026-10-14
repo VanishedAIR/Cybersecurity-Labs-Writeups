@@ -127,7 +127,7 @@
 ### Attack Vectors Demonstrated
 
 -   **SQL Injection**: Tested `1' OR '1'='1` payload with and without WAF protection
--   **HTTP Flood**: Simulated DDoS-style rapid requests to trigger rate limiting
+-   **HTTP Flood**: Sent repeated browser requests to trigger rate limiting to trigger rate limiting
 -   **Bypass Attempts**: Attempted direct access to backend services
 
 ### Infrastructure Components
@@ -139,12 +139,12 @@
 
 ### Real-World Applications
 
-This lab demonstrates a production-ready web application security setup with:
+This lab demonstrates a controlled web application security lab with:
 
 -   Web Application Firewall (WAF) implementation
 -   Reverse proxy configuration
 -   SSL/TLS encryption through self-signed certificates
 -   HTTPS enforcement by redirecting HTTP to HTTPS
--   Rate limiting and DDoS protection
+-   Rate limiting validated through blocked requests and WAF logs
 -   Authentication and authorization controls
 -   Vulnerability testing and validation
